@@ -3,7 +3,7 @@ import 'package:ulivery_mobile_app/pages/Login/components/background_startpage.d
 import 'package:ulivery_mobile_app/pages/Login/pages/login_loginpage.dart';
 
 import 'Colors.dart';
-import 'RoundedButton.dart';
+import '../widgets/RoundedButton.dart';
 
 
 class BodyStartpage extends StatelessWidget{
