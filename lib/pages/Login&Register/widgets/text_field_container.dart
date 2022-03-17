@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ulivery_mobile_app/pages/Login/components/colors.dart';
+import 'package:ulivery_mobile_app/pages/Login&Register/components/colors.dart';
 
 class TextFieldContainer extends StatelessWidget {
   final Widget child;

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ulivery_mobile_app/pages/Login/components/Colors.dart';
-import 'package:ulivery_mobile_app/pages/Login/components/body_startpage.dart';
-import 'package:ulivery_mobile_app/pages/Login/pages/login_startpage.dart';
+import 'package:ulivery_mobile_app/pages/Login&Register/pages/login_startpage.dart';
+import 'package:ulivery_mobile_app/pages/Login&Register/components/Colors.dart';
+import 'package:ulivery_mobile_app/pages/Login&Register/components/body_startpage.dart';
+import 'package:ulivery_mobile_app/pages/Login&Register/pages/login_startpage.dart';
 import 'package:ulivery_mobile_app/pages/shop_environments.dart';
 
 void main() {

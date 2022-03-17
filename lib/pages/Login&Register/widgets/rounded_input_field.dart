@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ulivery_mobile_app/pages/Login/components/Colors.dart';
-import 'package:ulivery_mobile_app/pages/Login/widgets/text_field_container.dart';
+import 'package:ulivery_mobile_app/pages/Login&Register/components/Colors.dart';
+import 'package:ulivery_mobile_app/pages/Login&Register/widgets/text_field_container.dart';
 
 class RoundedInputField extends StatelessWidget {
   final String hintText;
