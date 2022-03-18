@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:ulivery_mobile_app/pages/Login/components/background_startpage.dart';
-import 'package:ulivery_mobile_app/pages/Login/pages/login_loginpage.dart';
+import 'package:ulivery_mobile_app/pages/Login&Register/components/background_startpage.dart';
+import 'package:ulivery_mobile_app/pages/Login&Register/pages/login_loginpage.dart';
+import 'package:ulivery_mobile_app/pages/Login&Register/pages/login_registerpage.dart';
+import 'package:ulivery_mobile_app/pages/Login&Register/widgets/RoundedButton.dart';
 
-import 'Colors.dart';
-import 'RoundedButton.dart';
+import '../../Login&Register/components/Colors.dart';
+
 
 
 class BodyStartpage extends StatelessWidget{
@@ -46,7 +48,16 @@ class BodyStartpage extends StatelessWidget{
             text: "Registreren",
             color: colorprimarylight,
             textColor: colorprimary,
-            press: () {},
+            press: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const RegisterPage();
+                  },
+                ),
+              );
+            },
           ),
 
         ],
