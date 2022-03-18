@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ulivery_mobile_app/pages/shop_environments.dart';
+import 'package:ulivery_mobile_app/pages/base.dart';
 
 import 'util/theme.dart';
 
@@ -15,7 +15,7 @@ class UliveryApp extends StatelessWidget {
     return MaterialApp(
       title: 'Ulivery',
       theme: defaultTheme,
-      home: const ShopEnvironmentsPage(),
+      home: const ExamplePage(),
     );
   }
 }
