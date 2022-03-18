@@ -1,28 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:ulivery_mobile_app/pages/Login&Register/pages/login_startpage.dart';
-import 'package:ulivery_mobile_app/pages/Login&Register/components/Colors.dart';
-import 'package:ulivery_mobile_app/pages/Login&Register/components/body_startpage.dart';
-import 'package:ulivery_mobile_app/pages/Login&Register/pages/login_startpage.dart';
-import 'package:ulivery_mobile_app/pages/shop_environments.dart';
+import 'package:ulivery_mobile_app/pages/base.dart';
+
+import 'util/theme.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const UliveryApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class UliveryApp extends StatelessWidget {
+  const UliveryApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Ulivery Log-in',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primaryColor: colorprimary,
-          scaffoldBackgroundColor: Colors.white,
-        ),
-        home: const StartPage());
+      title: 'Ulivery',
+      theme: defaultTheme,
+      home: const ExamplePage(),
+    );
   }
 }
-
