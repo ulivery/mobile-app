@@ -14,7 +14,7 @@ class ShopEnvironmentsPage extends StatelessWidget {
             image: "https://www.vitam.nl/hubfs/Vitam_November2019%20Theme/Images/Chefs-bereiden-gerechten-vers.jpg",
             name: "Vitam - Zuyd Hogeschool Heerlen"),
         ShopEnvironment(
-            image: "https://media.prdn.nl/retailtrends/images/subway%282%29.jpg?w=768", name: "Subway - ... Heerlen")
+            image: "https://media.prdn.nl/retailtrends/assets/subway%282%29.jpg?w=768", name: "Subway - ... Heerlen")
       ]),
     );
   }
