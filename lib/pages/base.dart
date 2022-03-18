@@ -33,6 +33,6 @@ class ExamplePage extends BasicPage {
 class _ExamplePageState extends BasicPageState<ExamplePage> {
   @override
   Widget buildBody(BuildContext context) {
-    return Container();
+    return const Text("TEST");
   }
 }
