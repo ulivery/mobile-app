@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ulivery_mobile_app/pages/base.dart';
+import 'package:ulivery_mobile_app/pages/Onboarding/pages/onboarding_screen.dart';
+
 
 import 'util/theme.dart';
 
@@ -15,7 +16,8 @@ class UliveryApp extends StatelessWidget {
     return MaterialApp(
       title: 'Ulivery',
       theme: defaultTheme,
-      home: const ExamplePage(),
+      debugShowCheckedModeBanner: false,
+      home: const OnboardingScreen(),
     );
   }
 }

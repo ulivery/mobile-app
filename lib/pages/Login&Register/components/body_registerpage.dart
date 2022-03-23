@@ -21,7 +21,7 @@ class Body_Registerpage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text("Registreren",
+              const Text("Registreren",
               style: TextStyle(fontWeight: FontWeight.bold
               ),
               ),
@@ -56,7 +56,7 @@ class Body_Registerpage extends StatelessWidget {
                   Navigator.push(context,
                       MaterialPageRoute(builder:
                       (context){
-                        return LoginPage();
+                        return const LoginPage();
                       },
                       ),
                   );
