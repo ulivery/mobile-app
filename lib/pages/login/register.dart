@@ -25,6 +25,11 @@ class RegisterPageBody extends StatefulWidget {
 }
 
 class _RegisterPageBodyState extends State<RegisterPageBody> {
+  final TextEditingController _firstName = TextEditingController();
+  final TextEditingController _lastName = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -47,17 +52,17 @@ class _RegisterPageBodyState extends State<RegisterPageBody> {
             ),
             RoundedInputField(
               hintText: "Voornaam",
-              onChanged: (value) {},
+              controller: _firstName,
             ),
             RoundedInputField(
               hintText: "Achternaam",
-              onChanged: (value) {},
+              controller: _lastName,
             ),
             RoundedInputField(
               hintText: "E-mailadres",
-              onChanged: (value) {},
+              controller: _email,
             ),
-            RoundedPasswordField(onChanged: (value) {}),
+            RoundedPasswordField(controller: _password),
             RoundedButton(
               text: "Registreren",
               press: () {},

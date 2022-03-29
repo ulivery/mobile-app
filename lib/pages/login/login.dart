@@ -25,6 +25,9 @@ class LoginPageBody extends StatefulWidget {
 }
 
 class _LoginPageBodyState extends State<LoginPageBody> {
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -46,10 +49,10 @@ class _LoginPageBodyState extends State<LoginPageBody> {
               ),
               RoundedInputField(
                 hintText: "E-mailadres",
-                onChanged: (value) {},
+                controller: _email,
               ),
               RoundedPasswordField(
-                onChanged: (value) {},
+                controller: _password,
               ),
               RoundedButton(
                 text: "Inloggen",
