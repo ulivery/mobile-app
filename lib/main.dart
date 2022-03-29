@@ -37,9 +37,10 @@ class UliveryApp extends StatelessWidget {
               //   await user.sendEmailVerification();
               // } TODO: Implement email verification check
 
-              navigatorKey.currentState!.pushReplacement(_animatedRoute(const LoginPage()));
+              navigatorKey.currentState!.pushAndRemoveUntil(_animatedRoute(const LoginPage()), (route) => false);
             } else {
-              navigatorKey.currentState!.pushReplacement(_animatedRoute(const ShopEnvironmentsPage()));
+              navigatorKey.currentState!
+                  .pushAndRemoveUntil(_animatedRoute(const ShopEnvironmentsPage()), (route) => false);
             }
           });
 
