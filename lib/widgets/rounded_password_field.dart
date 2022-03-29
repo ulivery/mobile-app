@@ -12,9 +12,13 @@ class RoundedPasswordField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFieldContainer(
-      child: TextField(
+      child: TextFormField(
         obscureText: true,
         controller: controller,
+        validator: (value) {
+          if (value == null || value.isEmpty) return "Vul hier iets in.";
+          return null;
+        },
         decoration: InputDecoration(
           hintText: "Wachtwoord",
           icon: Icon(
