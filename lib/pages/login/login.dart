@@ -60,6 +60,7 @@ class _LoginPageBodyState extends State<LoginPageBody> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     RoundedInputField(
+                      type: TextInputType.emailAddress,
                       hintText: "E-mailadres",
                       controller: _email,
                     ),

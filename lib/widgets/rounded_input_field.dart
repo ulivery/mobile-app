@@ -5,13 +5,11 @@ class RoundedInputField extends StatelessWidget {
   final String hintText;
   final IconData icon;
   final TextEditingController controller;
+  final TextInputType? type;
 
-  const RoundedInputField({
-    Key? key,
-    required this.hintText,
-    this.icon = Icons.person,
-    required this.controller,
-  }) : super(key: key);
+  const RoundedInputField(
+      {Key? key, required this.hintText, this.icon = Icons.person, required this.controller, this.type})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +20,7 @@ class RoundedInputField extends StatelessWidget {
           if (value == null || value.isEmpty) return "Vul hier iets in.";
           return null;
         },
+        keyboardType: type,
         decoration: InputDecoration(
             icon: Icon(
               icon,

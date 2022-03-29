@@ -62,14 +62,17 @@ class _RegisterPageBodyState extends State<RegisterPageBody> {
                   RoundedInputField(
                     hintText: "Voornaam",
                     controller: _firstName,
+                    type: TextInputType.name,
                   ),
                   RoundedInputField(
                     hintText: "Achternaam",
                     controller: _lastName,
+                    type: TextInputType.name,
                   ),
                   RoundedInputField(
                     hintText: "E-mailadres",
                     controller: _email,
+                    type: TextInputType.emailAddress,
                   ),
                   RoundedPasswordField(controller: _password),
                 ],
