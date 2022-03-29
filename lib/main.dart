@@ -1,13 +1,25 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:ulivery_mobile_app/pages/base.dart';
+import 'package:ulivery_mobile_app/pages/login/verify_email.dart';
+import 'package:ulivery_mobile_app/pages/onboarding.dart';
+import 'package:ulivery_mobile_app/pages/shop_environments.dart';
+import 'package:ulivery_mobile_app/util/theme.dart';
+import 'package:ulivery_mobile_app/util/utils.dart';
 
-import 'util/theme.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const UliveryApp());
 }
 
 class UliveryApp extends StatelessWidget {
+  static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
   const UliveryApp({Key? key}) : super(key: key);
 
   @override
@@ -15,7 +27,33 @@ class UliveryApp extends StatelessWidget {
     return MaterialApp(
       title: 'Ulivery',
       theme: defaultTheme,
-      home: const ExamplePage(),
+      debugShowCheckedModeBanner: false,
+      navigatorKey: navigatorKey,
+      home: Builder(
+        builder: (context) {
+          FirebaseAuth.instance.authStateChanges().listen((User? user) async {
+            if (user == null) {
+              navigatorKey.currentState!.pushAndRemoveUntil(fadeRoute(const OnBoardingScreen()), (route) => false);
+            } else {
+              // Email verification check
+              if (!user.emailVerified) {
+                await user.sendEmailVerification();
+                navigatorKey.currentState!.pushAndRemoveUntil(
+                    fadeRoute(const VerifyEmailPage(), duration: const Duration(milliseconds: 0)), (route) => false);
+                return;
+              }
+
+              navigatorKey.currentState!.pushAndRemoveUntil(fadeRoute(const ShopEnvironmentsPage()), (route) => false);
+            }
+          });
+
+          if (FirebaseAuth.instance.currentUser == null) {
+            return const OnBoardingScreen();
+          }
+
+          return const Scaffold();
+        },
+      ),
     );
   }
 }

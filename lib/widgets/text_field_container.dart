@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ulivery_mobile_app/pages/Login&Register/components/colors.dart';
 
 class TextFieldContainer extends StatelessWidget {
   final Widget child;
@@ -10,16 +9,13 @@ class TextFieldContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth =
-        MediaQuery.of(context).size.width;
-    double screenHeight =
-        MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: const EdgeInsets.symmetric(vertical: 10),
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       width: screenWidth * 0.7,
       decoration: BoxDecoration(
-        color: colorprimarylight,
+        color: Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.circular(29),
       ),
       child: child,

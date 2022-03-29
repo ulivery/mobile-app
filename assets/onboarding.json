@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Lorem ipsum dolor sit amet, consectetur.",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fringilla quam eu faci lisi.",
+    "image": "assets/img/onboarding/onboarding_1.png"
+  },
+  {
+    "title": "Lorem ipsum dolor sit amet, consectetur.",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fringilla quam eu faci lisi.",
+    "image": "assets/img/onboarding/onboarding_2.png"
+  },
+  {
+    "title": "Lorem ipsum dolor sit amet, consectetur.",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fringilla quam eu faci lisi.",
+    "image": "assets/img/onboarding/onboarding_1.png"
+  },
+  {
+    "title": "Lorem ipsum dolor sit amet, consectetur.",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fringilla quam eu faci lisi.",
+    "image": "assets/img/onboarding/onboarding_2.png"
+  }
+]
