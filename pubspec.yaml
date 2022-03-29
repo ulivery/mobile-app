@@ -29,5 +29,8 @@ flutter_icons:
 flutter:
   uses-material-design: true
   assets :
-    - assets/LoginPages/
-    - assets/OnboardingScreen/
+    - assets/img/
+    - assets/img/onboarding/
+    - assets/img/login/
+    - assets/icon/
+    - assets/onboarding.json

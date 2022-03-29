@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:ulivery_mobile_app/pages/Onboarding/pages/onboarding_screen.dart';
+import 'package:ulivery_mobile_app/pages/onboarding.dart';
 
 import 'firebase_options.dart';
 import 'util/theme.dart';
@@ -31,7 +31,7 @@ class UliveryApp extends StatelessWidget {
       title: 'Ulivery',
       theme: defaultTheme,
       debugShowCheckedModeBanner: false,
-      home: const OnboardingScreen(),
+      home: const OnBoardingScreen(),
     );
   }
 }

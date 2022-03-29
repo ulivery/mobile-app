@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ulivery_mobile_app/pages/Login&Register/widgets/text_field_container.dart';
-
-import '../components/Colors.dart';
-
+import 'package:ulivery_mobile_app/widgets/text_field_container.dart';
 
 class RoundedPasswordField extends StatelessWidget {
   final ValueChanged<String> onChanged;
@@ -17,18 +14,18 @@ class RoundedPasswordField extends StatelessWidget {
       child: TextField(
         obscureText: true,
         onChanged: onChanged,
-        decoration: const InputDecoration(
+        decoration: InputDecoration(
           hintText: "Wachtwoord",
-          icon: Icon(Icons.lock,
-            color: colorprimary,
+          icon: Icon(
+            Icons.lock,
+            color: Theme.of(context).colorScheme.primary,
           ),
           suffixIcon: Icon(
             Icons.visibility,
-            color: colorprimary,
+            color: Theme.of(context).colorScheme.primary,
           ),
           border: InputBorder.none,
-
-        ) ,
+        ),
       ),
     );
   }
