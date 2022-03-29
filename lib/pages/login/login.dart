@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ulivery_mobile_app/components/account_check.dart';
 import 'package:ulivery_mobile_app/components/login_background.dart';
@@ -27,6 +28,9 @@ class LoginPageBody extends StatefulWidget {
 class _LoginPageBodyState extends State<LoginPageBody> {
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  String? _error;
+  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -47,18 +51,67 @@ class _LoginPageBodyState extends State<LoginPageBody> {
               SizedBox(
                 height: screenHeight * 0.35,
               ),
-              RoundedInputField(
-                hintText: "E-mailadres",
-                controller: _email,
+              _error == null
+                  ? Container()
+                  : Text(_error!, style: TextStyle(color: Theme.of(context).colorScheme.error)),
+              Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    RoundedInputField(
+                      hintText: "E-mailadres",
+                      controller: _email,
+                    ),
+                    RoundedPasswordField(
+                      controller: _password,
+                    ),
+                  ],
+                ),
               ),
-              RoundedPasswordField(
-                controller: _password,
-              ),
-              RoundedButton(
-                text: "Inloggen",
-                press: () {},
-                color: Theme.of(context).colorScheme.primary,
-              ),
+              _isLoading
+                  ? Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 70, vertical: 15),
+                      child: LinearProgressIndicator(
+                          color: Theme.of(context).colorScheme.primary,
+                          minHeight: 5,
+                          backgroundColor: Colors.transparent),
+                    )
+                  : RoundedButton(
+                      text: "Inloggen",
+                      press: () async {
+                        if (_formKey.currentState!.validate()) {
+                          setState(() {
+                            _error = null;
+                            _isLoading = true;
+                          });
+
+                          try {
+                            await FirebaseAuth.instance
+                                .signInWithEmailAndPassword(email: _email.text, password: _password.text);
+                          } on FirebaseAuthException catch (e) {
+                            if (e.code == 'user-disabled') {
+                              setState(() {
+                                _error = "Je account is momenteel geblokkeerd";
+                              });
+                            } else if (e.code == 'user-not-found' || e.code == 'wrong-password') {
+                              setState(() {
+                                _error = "Ongeldige log-in gegevens";
+                              });
+                            } else {
+                              setState(() {
+                                _error = e.code;
+                              });
+                            }
+                          }
+
+                          setState(() {
+                            _isLoading = false;
+                          });
+                        }
+                      },
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
               SizedBox(
                 height: screenHeight * 0.03,
               ),

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 abstract class BasicPage extends StatefulWidget {
@@ -15,6 +16,15 @@ abstract class BasicPageState<T extends BasicPage> extends State<T> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        actions: [
+          //TODO: Replace with settings
+          IconButton(
+            icon: Icon(Icons.logout, color: Theme.of(context).colorScheme.secondary),
+            onPressed: () async {
+              await FirebaseAuth.instance.signOut();
+            },
+          )
+        ],
       ),
       body: buildBody(context),
     );

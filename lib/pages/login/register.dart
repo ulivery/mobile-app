@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ulivery_mobile_app/components/account_check.dart';
 import 'package:ulivery_mobile_app/components/login_background.dart';
@@ -29,6 +30,9 @@ class _RegisterPageBodyState extends State<RegisterPageBody> {
   final TextEditingController _lastName = TextEditingController();
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  bool _isLoading = false;
+  String? _error;
 
   @override
   Widget build(BuildContext context) {
@@ -50,24 +54,75 @@ class _RegisterPageBodyState extends State<RegisterPageBody> {
               "assets/img/logo.png",
               width: screenWidth * 0.9,
             ),
-            RoundedInputField(
-              hintText: "Voornaam",
-              controller: _firstName,
+            _error == null ? Container() : Text(_error!, style: TextStyle(color: Theme.of(context).colorScheme.error)),
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  RoundedInputField(
+                    hintText: "Voornaam",
+                    controller: _firstName,
+                  ),
+                  RoundedInputField(
+                    hintText: "Achternaam",
+                    controller: _lastName,
+                  ),
+                  RoundedInputField(
+                    hintText: "E-mailadres",
+                    controller: _email,
+                  ),
+                  RoundedPasswordField(controller: _password),
+                ],
+              ),
             ),
-            RoundedInputField(
-              hintText: "Achternaam",
-              controller: _lastName,
-            ),
-            RoundedInputField(
-              hintText: "E-mailadres",
-              controller: _email,
-            ),
-            RoundedPasswordField(controller: _password),
-            RoundedButton(
-              text: "Registreren",
-              press: () {},
-              color: Theme.of(context).colorScheme.primary,
-            ),
+            _isLoading
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 70, vertical: 15),
+                    child: LinearProgressIndicator(
+                        color: Theme.of(context).colorScheme.primary,
+                        minHeight: 5,
+                        backgroundColor: Colors.transparent),
+                  )
+                : RoundedButton(
+                    text: "Registreren",
+                    press: () async {
+                      if (_formKey.currentState!.validate()) {
+                        setState(() {
+                          _error = null;
+                          _isLoading = true;
+                        });
+
+                        try {
+                          await FirebaseAuth.instance
+                              .createUserWithEmailAndPassword(email: _email.text, password: _password.text);
+
+                          User? user = FirebaseAuth.instance.currentUser;
+                          if (user != null) {
+                            user.updateDisplayName(_firstName.text + " " + _lastName.text);
+                          }
+                        } on FirebaseAuthException catch (e) {
+                          if (e.code == 'weak-password') {
+                            setState(() {
+                              _error = "Wachtwoord is niet sterk genoeg.";
+                            });
+                          } else if (e.code == 'email-already-in-use') {
+                            setState(() {
+                              _error = "E-mailadres al in gebruik.";
+                            });
+                          } else {
+                            setState(() {
+                              _error = e.code;
+                            });
+                          }
+                        }
+
+                        setState(() {
+                          _isLoading = false;
+                        });
+                      }
+                    },
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
             SizedBox(
               height: screenHeight * 0.035,
             ),

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ShopEnvironmentsPage extends StatelessWidget {
@@ -8,13 +9,21 @@ class ShopEnvironmentsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Shops"),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.logout, color: Theme.of(context).colorScheme.secondary),
+            onPressed: () async {
+              await FirebaseAuth.instance.signOut();
+            },
+          )
+        ],
       ),
       body: ListView(children: const [
         ShopEnvironment(
             image: "https://www.vitam.nl/hubfs/Vitam_November2019%20Theme/Images/Chefs-bereiden-gerechten-vers.jpg",
             name: "Vitam - Zuyd Hogeschool Heerlen"),
         ShopEnvironment(
-            image: "https://media.prdn.nl/retailtrends/assets/subway%282%29.jpg?w=768", name: "Subway - ... Heerlen")
+            image: "https://media.prdn.nl/retailtrends/images/subway%282%29.jpg", name: "Subway - ... Heerlen")
       ]),
     );
   }
