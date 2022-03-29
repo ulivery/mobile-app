@@ -2,6 +2,9 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ulivery_mobile_app/main.dart';
+import 'package:ulivery_mobile_app/pages/shop_environments.dart';
+import 'package:ulivery_mobile_app/util/utils.dart';
 
 class VerifyEmailPage extends StatefulWidget {
   const VerifyEmailPage({Key? key}) : super(key: key);
@@ -17,10 +20,12 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
   @override
   void initState() {
     super.initState();
-    _timer = Timer.periodic(const Duration(seconds: 6), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 6), (timer) async {
+      await FirebaseAuth.instance.currentUser!.reload();
       User? user = FirebaseAuth.instance.currentUser;
       if (user != null && user.emailVerified) {
-        //TODO: Maybe push route?
+        UliveryApp.navigatorKey.currentState!
+            .pushAndRemoveUntil(fadeRoute(const ShopEnvironmentsPage()), (route) => false);
       }
     });
   }
@@ -60,7 +65,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                     height: 10,
                   ),
                   const Text(
-                    "Om gebruik te kunnen maken van de applicatie moet je e-mailadres nog geverifieerd worden. Ga naar je inbox en klik op de verificatielink.",
+                    "Om gebruik te kunnen maken van de applicatie moet je e-mailadres nog geverifieerd worden. Ga naar je inbox en klik op de verificatielink. Geen bericht in je inbox? Check dan ook even je spam-folder.",
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(
