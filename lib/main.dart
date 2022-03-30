@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:fluri/fluri.dart';
 import 'package:flutter/material.dart';
 import 'package:ulivery_mobile_app/pages/login/verify_email.dart';
 import 'package:ulivery_mobile_app/pages/onboarding.dart';
@@ -7,6 +8,7 @@ import 'package:ulivery_mobile_app/pages/shop_environments.dart';
 import 'package:ulivery_mobile_app/util/theme.dart';
 import 'package:ulivery_mobile_app/util/utils.dart';
 
+import 'api/catalog.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -14,13 +16,17 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const UliveryApp());
+  runApp(UliveryApp());
 }
 
 class UliveryApp extends StatelessWidget {
   static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  static late final Catalog catalog;
 
-  const UliveryApp({Key? key}) : super(key: key);
+  UliveryApp({Key? key}) : super(key: key) {
+    var uri = Fluri("https://api.ulivery.nl/");
+    catalog = Catalog(baseUri: uri);
+  }
 
   @override
   Widget build(BuildContext context) {
