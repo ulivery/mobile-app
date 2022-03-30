@@ -73,6 +73,7 @@ class _RegisterPageBodyState extends State<RegisterPageBody> {
                     hintText: "E-mailadres",
                     controller: _email,
                     type: TextInputType.emailAddress,
+                    icon: Icons.mail,
                   ),
                   RoundedPasswordField(controller: _password),
                 ],
