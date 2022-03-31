@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:ulivery_mobile_app/model.dart';
 import 'package:ulivery_mobile_app/pages/base.dart';
+import 'package:ulivery_mobile_app/pages/product.dart';
 
 class ProductEnvironmentPage extends BasicPage {
   static List<ProductEnvironment> productEnvironments = [
@@ -67,7 +68,11 @@ class _ProductEnvironmentPageState
                           Navigator.of(context).push(
                             CupertinoPageRoute<void>(
                               builder: (BuildContext context) {
-                                return const ExamplePage();
+                                return ProductPage(
+                                  productEnvironment:
+                                      newProductEnvironments[index],
+                                  title: newProductEnvironments[index].name,
+                                );
                               },
                             ),
                           );
