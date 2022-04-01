@@ -3,8 +3,6 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ulivery_mobile_app/main.dart';
-import 'package:ulivery_mobile_app/pages/shop_environments.dart';
-import 'package:ulivery_mobile_app/util/utils.dart';
 
 class VerifyEmailPage extends StatefulWidget {
   const VerifyEmailPage({Key? key}) : super(key: key);
@@ -24,8 +22,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
       await FirebaseAuth.instance.currentUser!.reload();
       User? user = FirebaseAuth.instance.currentUser;
       if (user != null && user.emailVerified) {
-        UliveryApp.navigatorKey.currentState!
-            .pushAndRemoveUntil(fadeRoute(const ShopEnvironmentsPage()), (route) => false);
+        UliveryApp.fadeHome();
       }
     });
   }
