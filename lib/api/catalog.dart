@@ -23,10 +23,11 @@ class Catalog extends Wrapper {
     throw ApiException(response.statusCode, response.body);
   }
 
-  Future<List<ProductCategory>> getCategories({required int environmentId}) async {
+  Future<List<ProductCategory>> getCategories({required int environmentId, String search = ""}) async {
     List<ProductCategory> categories = [];
 
-    var response = await http.get(getUri("api/categories", params: {"environment": environmentId.toString()}));
+    var response =
+        await http.get(getUri("api/categories", params: {"environment": environmentId.toString(), "name": search}));
     if (response.statusCode == 200) {
       List<dynamic> json = jsonDecode(response.body);
       for (var item in json) {
@@ -38,10 +39,10 @@ class Catalog extends Wrapper {
     throw ApiException(response.statusCode, response.body);
   }
 
-  Future<List<Product>> getProducts({required int categoryId}) async {
+  Future<List<Product>> getProducts({required int categoryId, String search = ""}) async {
     List<Product> products = [];
 
-    var response = await http.get(getUri("api/categories/$categoryId/products"));
+    var response = await http.get(getUri("api/products", params: {"category": categoryId.toString(), "name": search}));
     if (response.statusCode == 200) {
       List<dynamic> json = jsonDecode(response.body);
       for (var item in json) {

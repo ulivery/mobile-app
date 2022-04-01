@@ -3,11 +3,14 @@ class Product {
   String name;
   String image;
   double price;
+  String shortDescription;
+  String longDescription;
 
-  Product(this.id, this.name, this.image, this.price);
+  Product(this.id, this.name, this.image, this.price, this.shortDescription, this.longDescription);
 
   factory Product.fromJson(Map<String, dynamic> json) {
-    return Product(json['id'], json['name'], json['image'], json['price']);
+    return Product(
+        json['id'], json['name'], json['image'], json['price'], json['shortDescription'], json['longDescription']);
   }
 }
 

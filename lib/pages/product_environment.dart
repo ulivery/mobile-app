@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:ulivery_mobile_app/api/models.dart';
 import 'package:ulivery_mobile_app/main.dart';
 import 'package:ulivery_mobile_app/pages/base.dart';
+import 'package:ulivery_mobile_app/pages/product.dart';
+import 'package:ulivery_mobile_app/util/utils.dart';
 
 class ProductEnvironmentPage extends BasicPage {
   const ProductEnvironmentPage({Key? key}) : super(title: "Shops", key: key);
@@ -38,9 +40,7 @@ class _ProductEnvironmentPageState extends BasicPageState<ProductEnvironmentPage
               builder: (BuildContext context, AsyncSnapshot<List<ProductEnvironment>> snapshot) {
                 if (snapshot.hasData) {
                   if (snapshot.data!.isEmpty) {
-                    return const Center(
-                      child: Text("Geen resultaten gevonden!"),
-                    );
+                    return FutureUtils.noResults();
                   }
 
                   return ListView.builder(
@@ -52,11 +52,7 @@ class _ProductEnvironmentPageState extends BasicPageState<ProductEnvironmentPage
                           Navigator.of(context).push(
                             CupertinoPageRoute<void>(
                               builder: (BuildContext context) {
-                                return Container();
-                                // return ProductPage(
-                                //   productEnvironment: environment,
-                                //   title: snapshot.data![index].name,
-                                // );
+                                return ProductPage(environment: environment);
                               },
                             ),
                           );
@@ -102,12 +98,10 @@ class _ProductEnvironmentPageState extends BasicPageState<ProductEnvironmentPage
                     },
                   );
                 } else if (snapshot.hasError) {
-                  // Error
+                  return FutureUtils.error(snapshot.error);
                 }
 
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
+                return FutureUtils.loading();
               },
             ),
           )
