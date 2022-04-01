@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ulivery_mobile_app/pages/login/verify_email.dart';
 import 'package:ulivery_mobile_app/pages/onboarding.dart';
+import 'package:ulivery_mobile_app/pages/select_service.dart';
 import 'package:ulivery_mobile_app/pages/product_environment.dart';
 import 'package:ulivery_mobile_app/util/theme.dart';
 import 'package:ulivery_mobile_app/util/utils.dart';
@@ -27,7 +28,7 @@ class UliveryApp extends StatelessWidget {
   }
 
   static void fadeHome() {
-    navigatorKey.currentState!.pushAndRemoveUntil(fadeRoute(const ProductEnvironmentPage()), (route) => false);
+    navigatorKey.currentState!.pushAndRemoveUntil(fadeRoute(const SelectService()), (route) => false);
   }
 
   @override
@@ -50,7 +51,7 @@ class UliveryApp extends StatelessWidget {
                     fadeRoute(const VerifyEmailPage(), duration: const Duration(milliseconds: 0)), (route) => false);
                 return;
               }
-
+              
               fadeHome();
             }
           });
