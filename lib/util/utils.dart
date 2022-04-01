@@ -13,3 +13,23 @@ Route fadeRoute(Widget page, {Duration? duration}) {
     },
   );
 }
+
+class FutureUtils {
+  static Widget loading() {
+    return const Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+
+  static Widget error(Object? error) {
+    return const Center(
+      child: Text("Uh-oh, er gings iets mis."),
+    );
+  }
+
+  static Widget noResults() {
+    return const Center(
+      child: Text("Geen resultaten gevonden."),
+    );
+  }
+}
