@@ -1,49 +1,18 @@
 import 'package:flutter/cupertino.dart';
-import 'package:ulivery_mobile_app/model.dart';
+import 'package:flutter/material.dart';
+import 'package:ulivery_mobile_app/api/models.dart';
+import 'package:ulivery_mobile_app/main.dart';
 import 'package:ulivery_mobile_app/pages/base.dart';
-import 'package:ulivery_mobile_app/pages/product.dart';
 
 class ProductEnvironmentPage extends BasicPage {
-  static List<ProductEnvironment> productEnvironments = [
-    ProductEnvironment(
-        name: 'Vitam',
-        location: 'Heerlen Zuyd Hogeschool',
-        logo: 'vitam_logo.png',
-        bgImage: 'vitam_background.png'),
-    ProductEnvironment(
-      name: 'Subway',
-      location: 'Heerlen Saroleastraat',
-      logo: 'subway_logo.png',
-      bgImage: 'subway_background.png',
-    ),
-    ProductEnvironment(
-      name: 'McDonald\'s',
-      location: 'Heerlen Bongerd',
-      logo: 'mcdonalds_logo.png',
-      bgImage: 'mcdonalds_background.png',
-    ),
-  ];
-
-  const ProductEnvironmentPage({Key? key}) : super(title: "Ulivery", key: key);
+  const ProductEnvironmentPage({Key? key}) : super(title: "Shops", key: key);
 
   @override
-  BasicPageState<ProductEnvironmentPage> createState() =>
-      _ProductEnvironmentPageState();
+  BasicPageState<ProductEnvironmentPage> createState() => _ProductEnvironmentPageState();
 }
 
-class _ProductEnvironmentPageState
-    extends BasicPageState<ProductEnvironmentPage> {
-  List<ProductEnvironment> newProductEnvironments =
-      List.from(ProductEnvironmentPage.productEnvironments);
-
-  onItemChanged(String value) {
-    setState(() {
-      newProductEnvironments = ProductEnvironmentPage.productEnvironments
-          .where((string) =>
-              string.name.toLowerCase().contains(value.toLowerCase()))
-          .toList();
-    });
-  }
+class _ProductEnvironmentPageState extends BasicPageState<ProductEnvironmentPage> {
+  String _search = "";
 
   @override
   Widget buildBody(BuildContext context) {
@@ -53,26 +22,41 @@ class _ProductEnvironmentPageState
         children: [
           CupertinoSearchTextField(
             placeholder: 'Zoek',
-            onChanged: onItemChanged,
+            onChanged: (v) {
+              setState(() {
+                _search = v;
+              });
+            },
           ),
           const SizedBox(
             height: 8,
           ),
-          newProductEnvironments.isNotEmpty
-              ? Expanded(
-                  child: ListView.builder(
-                    itemCount: newProductEnvironments.length,
+          Expanded(
+            child: FutureBuilder(
+              key: ValueKey(_search),
+              future: UliveryApp.catalog.getEnvironments(search: _search),
+              builder: (BuildContext context, AsyncSnapshot<List<ProductEnvironment>> snapshot) {
+                if (snapshot.hasData) {
+                  if (snapshot.data!.isEmpty) {
+                    return const Center(
+                      child: Text("Geen resultaten gevonden!"),
+                    );
+                  }
+
+                  return ListView.builder(
+                    itemCount: snapshot.data!.length,
                     itemBuilder: (BuildContext context, int index) {
+                      ProductEnvironment environment = snapshot.data![index];
                       return GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(
                             CupertinoPageRoute<void>(
                               builder: (BuildContext context) {
-                                return ProductPage(
-                                  productEnvironment:
-                                      newProductEnvironments[index],
-                                  title: newProductEnvironments[index].name,
-                                );
+                                return Container();
+                                // return ProductPage(
+                                //   productEnvironment: environment,
+                                //   title: snapshot.data![index].name,
+                                // );
                               },
                             ),
                           );
@@ -83,24 +67,20 @@ class _ProductEnvironmentPageState
                               height: 240.0,
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(8.0)),
+                                borderRadius: const BorderRadius.all(Radius.circular(8.0)),
                                 image: DecorationImage(
-                                  image: AssetImage(
-                                      'assets/ProductEnvironmentPage/${newProductEnvironments[index].bgImage}'),
+                                  image: NetworkImage(environment.background),
                                   fit: BoxFit.cover,
                                 ),
                               ),
                               child: Container(
                                 decoration: const BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(8.0)),
+                                  borderRadius: BorderRadius.all(Radius.circular(8.0)),
                                   color: Color.fromRGBO(0, 0, 0, 0.3),
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsets.all(50.0),
-                                  child: Image.asset(
-                                      'assets/ProductEnvironmentPage/${newProductEnvironments[index].logo}'),
+                                  child: Image.network(environment.logo),
                                 ),
                               ),
                             ),
@@ -108,7 +88,7 @@ class _ProductEnvironmentPageState
                               height: 8,
                             ),
                             Text(
-                              '${newProductEnvironments[index].name} - ${newProductEnvironments[index].location}',
+                              '${environment.name} - ${environment.address.address}',
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                               ),
@@ -120,9 +100,17 @@ class _ProductEnvironmentPageState
                         ),
                       );
                     },
-                  ),
-                )
-              : const Center(child: Text('Geen resultaten'))
+                  );
+                } else if (snapshot.hasError) {
+                  // Error
+                }
+
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              },
+            ),
+          )
         ],
       ),
     );

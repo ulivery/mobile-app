@@ -28,13 +28,15 @@ class Address {
 class ProductEnvironment {
   int id;
   String name;
-  String image;
+  String background;
+  String logo;
   Address address;
 
-  ProductEnvironment(this.id, this.name, this.image, this.address);
+  ProductEnvironment(this.id, this.name, this.background, this.logo, this.address);
 
   factory ProductEnvironment.fromJson(Map<String, dynamic> json) {
-    return ProductEnvironment(json['id'], json['name'], json['image'], Address.fromJson(json['address']));
+    return ProductEnvironment(
+        json['id'], json['name'], json['background'], json['logo'], Address.fromJson(json['address']));
   }
 }
 

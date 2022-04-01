@@ -2,13 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ulivery_mobile_app/model.dart';
 import 'package:ulivery_mobile_app/pages/base.dart';
-import 'package:ulivery_mobile_app/pages/product_environment.dart';
 
 class ProductPage extends BasicPage {
-  const ProductPage(
-      {required ProductEnvironment productEnvironment,
-      required String title,
-      Key? key})
+  const ProductPage({required ProductEnvironment productEnvironment, required String title, Key? key})
       : super(title: title, key: key);
 
   @override
@@ -62,9 +58,7 @@ class _ProductPageState extends BasicPageState<ProductPage> {
                             Container(
                               width: MediaQuery.of(context).size.width,
                               padding: const EdgeInsets.only(bottom: 25.0),
-                              child: Image.asset(
-                                  'assets/ProductPage/ProductTempeh.png',
-                                  fit: BoxFit.cover),
+                              child: Image.asset('assets/ProductPage/ProductTempeh.png', fit: BoxFit.cover),
                             ),
                             ClipRRect(
                               child: Column(
@@ -152,13 +146,7 @@ class _ProductPageState extends BasicPageState<ProductPage> {
                               ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Text('0'),
-                                  Text('0'),
-                                  Text('0'),
-                                  Text('0'),
-                                  Text('0')
-                                ],
+                                children: const [Text('0'), Text('0'), Text('0'), Text('0'), Text('0')],
                               ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -171,12 +159,7 @@ class _ProductPageState extends BasicPageState<ProductPage> {
                               ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Text('0'),
-                                  Text('0'),
-                                  Text('0'),
-                                  Text('0')
-                                ],
+                                children: const [Text('0'), Text('0'), Text('0'), Text('0')],
                               ),
                             ],
                           )
@@ -190,8 +173,7 @@ class _ProductPageState extends BasicPageState<ProductPage> {
                       children: [
                         const SizedBox(height: 10.0),
                         CupertinoButton.filled(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(100.0)),
+                            borderRadius: const BorderRadius.all(Radius.circular(100.0)),
                             child: const Text('Voeg toe aan bestelling'),
                             onPressed: () {
                               Navigator.pop(context);
@@ -213,32 +195,7 @@ class _ProductPageState extends BasicPageState<ProductPage> {
     );
   }
 
-  static List<ProductCategory> productCategories = [
-    ProductCategory(
-        name: 'Rebels',
-        environment: ProductEnvironmentPage.productEnvironments[0]),
-    ProductCategory(
-        name: 'Tosti\'s',
-        environment: ProductEnvironmentPage.productEnvironments[1]),
-    ProductCategory(
-        name: 'Salades',
-        environment: ProductEnvironmentPage.productEnvironments[0]),
-    ProductCategory(
-        name: 'Wraps',
-        environment: ProductEnvironmentPage.productEnvironments[2]),
-    ProductCategory(
-        name: 'Salades',
-        environment: ProductEnvironmentPage.productEnvironments[2]),
-    ProductCategory(
-        name: 'Zoetigheden',
-        environment: ProductEnvironmentPage.productEnvironments[2]),
-    ProductCategory(
-        name: 'Koffie',
-        environment: ProductEnvironmentPage.productEnvironments[0]),
-    ProductCategory(
-        name: 'Smoothies',
-        environment: ProductEnvironmentPage.productEnvironments[2]),
-  ];
+  static List<ProductCategory> productCategories = [];
 
   static List<Product> products = [
     Product(
@@ -288,17 +245,9 @@ class _ProductPageState extends BasicPageState<ProductPage> {
     ),
   ];
 
-  static List<ProductCategory> categorystest = productCategories
-      .where((environment) =>
-          environment.environment ==
-          ProductEnvironmentPage.productEnvironments[0])
-      .toList();
+  static List<ProductCategory> categorystest = [];
 
-  static List<Product> productstest = products
-      .where((environment) =>
-          environment.category.environment ==
-          ProductEnvironmentPage.productEnvironments[0])
-      .toList();
+  static List<Product> productstest = [];
 
   static List<ProductOption> productOptions = [
     ProductOption(name: 'Kaas', product: products[4]),
@@ -310,10 +259,7 @@ class _ProductPageState extends BasicPageState<ProductPage> {
 
   onItemChanged(String value) {
     setState(() {
-      newProducts = productstest
-          .where((string) =>
-              string.name.toLowerCase().contains(value.toLowerCase()))
-          .toList();
+      newProducts = productstest.where((string) => string.name.toLowerCase().contains(value.toLowerCase())).toList();
     });
   }
 
@@ -365,30 +311,23 @@ class _ProductPageState extends BasicPageState<ProductPage> {
                             GestureDetector(
                               onTap: () {
                                 Navigator.of(context)
-                                    .restorablePush(_modalBuilder2, arguments: {
-                                  'product': newProducts[index].id
-                                });
+                                    .restorablePush(_modalBuilder2, arguments: {'product': newProducts[index].id});
                               },
                               child: Column(
                                 children: [
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding:
-                                            const EdgeInsets.only(right: 15.0),
+                                        padding: const EdgeInsets.only(right: 15.0),
                                         child: Container(
                                           height: 50,
                                           width: 50,
                                           decoration: BoxDecoration(
-                                            borderRadius:
-                                                const BorderRadius.all(
-                                                    Radius.circular(8.0)),
+                                            borderRadius: const BorderRadius.all(Radius.circular(8.0)),
                                             image: DecorationImage(
-                                              image: AssetImage(
-                                                  'assets/ProductPage/${newProducts[index].image}'),
+                                              image: AssetImage('assets/ProductPage/${newProducts[index].image}'),
                                               fit: BoxFit.cover,
                                             ),
                                           ),
@@ -402,9 +341,7 @@ class _ProductPageState extends BasicPageState<ProductPage> {
                                               alignment: Alignment.topLeft,
                                               child: Text(
                                                 newProducts[index].name,
-                                                style: const TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.bold),
+                                                style: const TextStyle(fontWeight: FontWeight.bold),
                                               ),
                                             ),
                                             const SizedBox(
@@ -412,10 +349,7 @@ class _ProductPageState extends BasicPageState<ProductPage> {
                                             ),
                                             Container(
                                               alignment: Alignment.topLeft,
-                                              child: Text('€ ' +
-                                                  newProducts[index]
-                                                      .price
-                                                      .toString()),
+                                              child: Text('€ ' + newProducts[index].price.toString()),
                                             ),
                                           ],
                                         ),
@@ -424,12 +358,8 @@ class _ProductPageState extends BasicPageState<ProductPage> {
                                         flex: 1,
                                         child: GestureDetector(
                                           onTap: () {
-                                            Navigator.of(context)
-                                                .restorablePush(_modalBuilder,
-                                                    arguments: {
-                                                  'product':
-                                                      newProducts[index].id
-                                                });
+                                            Navigator.of(context).restorablePush(_modalBuilder,
+                                                arguments: {'product': newProducts[index].id});
                                           },
                                           child: Container(
                                             height: 50,
@@ -437,8 +367,7 @@ class _ProductPageState extends BasicPageState<ProductPage> {
                                             child: const Icon(
                                               CupertinoIcons.add_circled_solid,
                                               size: 40,
-                                              color:
-                                                  Color.fromRGBO(6, 50, 58, 1),
+                                              color: Color.fromRGBO(6, 50, 58, 1),
                                             ),
                                           ),
                                         ),
@@ -448,8 +377,7 @@ class _ProductPageState extends BasicPageState<ProductPage> {
                                   Row(
                                     children: [
                                       Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 65.0),
+                                        padding: const EdgeInsets.only(left: 65.0),
                                         child: Text(
                                           newProducts[index].shortDescription,
                                           overflow: TextOverflow.ellipsis,

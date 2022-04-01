@@ -6,12 +6,12 @@ import 'package:ulivery_mobile_app/api/models.dart';
 import 'package:ulivery_mobile_app/api/wrapper.dart';
 
 class Catalog extends Wrapper {
-  Catalog({required Fluri baseUri}) : super(baseUri);
+  Catalog() : super(Fluri("https://catalog.ulivery.nl/"));
 
-  Future<List<ProductEnvironment>> getEnvironments() async {
+  Future<List<ProductEnvironment>> getEnvironments({String search = ""}) async {
     List<ProductEnvironment> environments = [];
 
-    var response = await http.get(getUri("api/environments"));
+    var response = await http.get(getUri("api/environments", params: {"name": search}));
     if (response.statusCode == 200) {
       List<dynamic> json = jsonDecode(response.body);
       for (var item in json) {

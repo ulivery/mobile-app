@@ -1,10 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:fluri/fluri.dart';
 import 'package:flutter/material.dart';
 import 'package:ulivery_mobile_app/pages/login/verify_email.dart';
 import 'package:ulivery_mobile_app/pages/onboarding.dart';
-import 'package:ulivery_mobile_app/pages/shop_environments.dart';
+import 'package:ulivery_mobile_app/pages/product_environment.dart';
 import 'package:ulivery_mobile_app/util/theme.dart';
 import 'package:ulivery_mobile_app/util/utils.dart';
 
@@ -24,8 +23,11 @@ class UliveryApp extends StatelessWidget {
   static late final Catalog catalog;
 
   UliveryApp({Key? key}) : super(key: key) {
-    var uri = Fluri("https://api.ulivery.nl/");
-    catalog = Catalog(baseUri: uri);
+    catalog = Catalog();
+  }
+
+  static void fadeHome() {
+    navigatorKey.currentState!.pushAndRemoveUntil(fadeRoute(const ProductEnvironmentPage()), (route) => false);
   }
 
   @override
@@ -49,7 +51,7 @@ class UliveryApp extends StatelessWidget {
                 return;
               }
 
-              navigatorKey.currentState!.pushAndRemoveUntil(fadeRoute(const ShopEnvironmentsPage()), (route) => false);
+              fadeHome();
             }
           });
 
