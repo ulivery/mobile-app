@@ -43,7 +43,6 @@ class UliveryApp extends StatelessWidget {
       navigatorKey: navigatorKey,
       home: Builder(
         builder: (context) {
-          return PaymentScreen();
           FirebaseAuth.instance.authStateChanges().listen((User? user) async {
             if (user == null) {
               navigatorKey.currentState!.pushAndRemoveUntil(fadeRoute(const OnBoardingScreen()), (route) => false);
