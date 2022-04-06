@@ -5,6 +5,9 @@ import 'package:ulivery_mobile_app/pages/login/verify_email.dart';
 import 'package:ulivery_mobile_app/pages/onboarding.dart';
 import 'package:ulivery_mobile_app/pages/select_service.dart';
 import 'package:ulivery_mobile_app/pages/product_environment.dart';
+import 'package:ulivery_mobile_app/pages/wallet/payment_screen.dart';
+import 'package:ulivery_mobile_app/pages/wallet/top_up.dart';
+import 'package:ulivery_mobile_app/pages/wallet/wallet_overview.dart';
 import 'package:ulivery_mobile_app/util/theme.dart';
 import 'package:ulivery_mobile_app/util/utils.dart';
 
@@ -40,6 +43,7 @@ class UliveryApp extends StatelessWidget {
       navigatorKey: navigatorKey,
       home: Builder(
         builder: (context) {
+          return PaymentScreen();
           FirebaseAuth.instance.authStateChanges().listen((User? user) async {
             if (user == null) {
               navigatorKey.currentState!.pushAndRemoveUntil(fadeRoute(const OnBoardingScreen()), (route) => false);
