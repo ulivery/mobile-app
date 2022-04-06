@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ulivery_mobile_app/widgets/rounded_button.dart';
 
-class PaymentScreen extends StatelessWidget {
-  const PaymentScreen({Key? key}) : super(key: key);
+class PaymentScreenModal extends StatelessWidget {
+  const PaymentScreenModal({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +113,7 @@ class _PaymentScreenBodyState extends State<PaymentScreenBody> {
                 child: Column(
                   children: <Widget>[
                     RoundedButton(text: "Opwaarderen", press: (){}),
-                    RoundedButton(text: "Annuleren", press: (){}, color: Theme.of(context).colorScheme.secondary, textColor: Theme.of(context).colorScheme.primary,),
+                    RoundedButton(text: "Annuleren", press: (){Navigator.pop(context);}, color: Theme.of(context).colorScheme.secondary, textColor: Theme.of(context).colorScheme.primary,),
                   ],
 
             ),
