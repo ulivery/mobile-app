@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:ulivery_mobile_app/api/models.dart';
 import 'package:ulivery_mobile_app/pages/login/verify_email.dart';
 import 'package:ulivery_mobile_app/pages/onboarding.dart';
 import 'package:ulivery_mobile_app/pages/select_service.dart';
@@ -23,8 +24,10 @@ void main() async {
 }
 
 class UliveryApp extends StatelessWidget {
-  static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  static final GlobalKey<NavigatorState> navigatorKey =
+      GlobalKey<NavigatorState>();
   static late final Catalog catalog;
+  static List<Product> shoppingCartProducts = [];
 
   UliveryApp({Key? key}) : super(key: key) {
     catalog = Catalog();
@@ -45,13 +48,16 @@ class UliveryApp extends StatelessWidget {
         builder: (context) {
           FirebaseAuth.instance.authStateChanges().listen((User? user) async {
             if (user == null) {
-              navigatorKey.currentState!.pushAndRemoveUntil(fadeRoute(const OnBoardingScreen()), (route) => false);
+              navigatorKey.currentState!.pushAndRemoveUntil(
+                  fadeRoute(const OnBoardingScreen()), (route) => false);
             } else {
               // Email verification check
               if (!user.emailVerified) {
                 await user.sendEmailVerification();
                 navigatorKey.currentState!.pushAndRemoveUntil(
-                    fadeRoute(const VerifyEmailPage(), duration: const Duration(milliseconds: 0)), (route) => false);
+                    fadeRoute(const VerifyEmailPage(),
+                        duration: const Duration(milliseconds: 0)),
+                    (route) => false);
                 return;
               }
               
