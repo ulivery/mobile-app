@@ -4,7 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:ulivery_mobile_app/api/models.dart';
 import 'package:ulivery_mobile_app/pages/login/verify_email.dart';
 import 'package:ulivery_mobile_app/pages/onboarding.dart';
+import 'package:ulivery_mobile_app/pages/select_service.dart';
 import 'package:ulivery_mobile_app/pages/product_environment.dart';
+import 'package:ulivery_mobile_app/pages/wallet/payment_screen.dart';
+import 'package:ulivery_mobile_app/pages/wallet/top_up.dart';
+import 'package:ulivery_mobile_app/pages/wallet/wallet_overview.dart';
 import 'package:ulivery_mobile_app/util/theme.dart';
 import 'package:ulivery_mobile_app/util/utils.dart';
 
@@ -30,8 +34,7 @@ class UliveryApp extends StatelessWidget {
   }
 
   static void fadeHome() {
-    navigatorKey.currentState!.pushAndRemoveUntil(
-        fadeRoute(const ProductEnvironmentPage()), (route) => false);
+    navigatorKey.currentState!.pushAndRemoveUntil(fadeRoute(const SelectService()), (route) => false);
   }
 
   @override
@@ -57,7 +60,7 @@ class UliveryApp extends StatelessWidget {
                     (route) => false);
                 return;
               }
-
+              
               fadeHome();
             }
           });

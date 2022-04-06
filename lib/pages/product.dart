@@ -249,11 +249,17 @@ class _ProductPageState extends BasicPageState<ProductPage> {
                         itemBuilder: (BuildContext context, int index) {
                           ProductCategory category = snapshot.data![index];
                           return ElevatedButton(
-                            style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all<Color>(Theme.of(context).colorScheme.secondary),
-                                foregroundColor:
-                                    MaterialStateProperty.all<Color>(Theme.of(context).colorScheme.primary)),
+                            style: _category == category.id
+                                ? ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStateProperty.all<Color>(Theme.of(context).colorScheme.primary),
+                                    foregroundColor:
+                                        MaterialStateProperty.all<Color>(Theme.of(context).colorScheme.secondary))
+                                : ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStateProperty.all<Color>(Theme.of(context).colorScheme.secondary),
+                                    foregroundColor:
+                                        MaterialStateProperty.all<Color>(Theme.of(context).colorScheme.primary)),
                             child: Text(category.name, style: const TextStyle(fontWeight: FontWeight.w600)),
                             onPressed: () {
                               setState(() {
