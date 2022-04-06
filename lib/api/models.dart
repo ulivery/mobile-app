@@ -53,3 +53,32 @@ class ProductCategory {
     return ProductCategory(json['id'], json['name']);
   }
 }
+
+class WalletResponse {
+  double balance;
+  List<Transaction> transactions;
+
+  WalletResponse(this.balance, this.transactions);
+
+  factory WalletResponse.fromJson(Map<String, dynamic> json) {
+    List<Transaction> transactions = [];
+    for (var item in json['transactions']) {
+      transactions.add(Transaction.fromJson(item));
+    }
+
+    return WalletResponse(json['balance'], transactions);
+  }
+}
+
+class Transaction {
+  String description;
+  double amount;
+  String type;
+  DateTime timestamp;
+
+  Transaction(this.description, this.amount, this.type, this.timestamp);
+
+  factory Transaction.fromJson(Map<String, dynamic> json) {
+    return Transaction(json['description'], json['amount'], json['type'], DateTime.parse(json['timestamp']));
+  }
+}
