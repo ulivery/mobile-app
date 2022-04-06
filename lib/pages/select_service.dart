@@ -91,7 +91,7 @@ class ServiceButton extends StatelessWidget {
                         height: screenHeight * 0.01,
                       ),
                       Icon(
-                        Icons.arrow_circle_right,
+                        Icons.arrow_right_alt,
                         size: 40,
                         color: Theme.of(context).colorScheme.primary,
                       )
