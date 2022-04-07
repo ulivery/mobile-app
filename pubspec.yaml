@@ -13,6 +13,7 @@ dependencies:
   firebase_auth: ^3.3.11
   firebase_core: ^1.13.1
   cupertino_icons: ^1.0.2
+  package_info_plus: ^1.4.2
   fluri: ^2.0.0
   http: ^0.13.4
 

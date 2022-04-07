@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:ulivery_mobile_app/pages/product_environment.dart';
+import 'package:ulivery_mobile_app/pages/settings.dart';
 import 'package:ulivery_mobile_app/pages/wallet/wallet_overview.dart';
 
 class TabPage extends StatefulWidget {
@@ -40,7 +41,7 @@ class _TabPageState extends State<TabPage> {
               case 2:
                 return const WalletOverview();
               case 3:
-                return Container();
+                return const SettingsPage();
             }
             return const CupertinoApp();
           },
