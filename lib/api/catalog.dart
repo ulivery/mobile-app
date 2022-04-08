@@ -11,7 +11,8 @@ class Catalog extends Wrapper {
   Future<List<ProductEnvironment>> getEnvironments({String search = ""}) async {
     List<ProductEnvironment> environments = [];
 
-    var response = await http.get(getUri("api/environments", params: {"name": search}));
+    var response =
+        await http.get(getUri("api/environments", params: {"name": search}), headers: await getAuthHeaders());
     if (response.statusCode == 200) {
       List<dynamic> json = jsonDecode(response.body);
       for (var item in json) {
@@ -26,8 +27,9 @@ class Catalog extends Wrapper {
   Future<List<ProductCategory>> getCategories({required int environmentId, String search = ""}) async {
     List<ProductCategory> categories = [];
 
-    var response =
-        await http.get(getUri("api/categories", params: {"environment": environmentId.toString(), "name": search}));
+    var response = await http.get(
+        getUri("api/categories", params: {"environment": environmentId.toString(), "name": search}),
+        headers: await getAuthHeaders());
     if (response.statusCode == 200) {
       List<dynamic> json = jsonDecode(response.body);
       for (var item in json) {
@@ -42,7 +44,8 @@ class Catalog extends Wrapper {
   Future<List<Product>> getProducts({required int categoryId, String search = ""}) async {
     List<Product> products = [];
 
-    var response = await http.get(getUri("api/products", params: {"category": categoryId.toString(), "name": search}));
+    var response = await http.get(getUri("api/products", params: {"category": categoryId.toString(), "name": search}),
+        headers: await getAuthHeaders());
     if (response.statusCode == 200) {
       List<dynamic> json = jsonDecode(response.body);
       for (var item in json) {
