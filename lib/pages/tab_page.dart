@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:ulivery_mobile_app/pages/login/login.dart';
 import 'package:ulivery_mobile_app/pages/product_environment.dart';
+import 'package:ulivery_mobile_app/pages/settings.dart';
+import 'package:ulivery_mobile_app/pages/wallet/wallet_overview.dart';
 
 class TabPage extends StatefulWidget {
   const TabPage({Key? key}) : super(key: key);
@@ -16,21 +17,17 @@ class _TabPageState extends State<TabPage> {
       tabBar: CupertinoTabBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.house),
-              activeIcon: Icon(CupertinoIcons.house_fill),
-              label: 'Home'),
+              icon: Icon(CupertinoIcons.house), activeIcon: Icon(CupertinoIcons.house_fill), label: 'Home'),
           BottomNavigationBarItem(
               icon: Icon(CupertinoIcons.doc_text),
               activeIcon: Icon(CupertinoIcons.doc_text_fill),
               label: 'Bestellingen'),
           BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.bag),
-              activeIcon: Icon(CupertinoIcons.bag_fill),
-              label: 'Winkelmand'),
+              icon: Icon(CupertinoIcons.money_euro_circle),
+              activeIcon: Icon(CupertinoIcons.money_euro_circle_fill),
+              label: 'Wallet'),
           BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.ellipsis),
-              activeIcon: Icon(CupertinoIcons.person_fill),
-              label: 'Meer'),
+              icon: Icon(CupertinoIcons.gear), activeIcon: Icon(CupertinoIcons.gear_alt_fill), label: 'Instellingen'),
         ],
       ),
       tabBuilder: (BuildContext context, int index) {
@@ -40,11 +37,11 @@ class _TabPageState extends State<TabPage> {
               case 0:
                 return const ProductEnvironmentPage();
               case 1:
-                return const LoginPage();
+                return Container();
               case 2:
-                return const LoginPage();
+                return const WalletOverview();
               case 3:
-                return const LoginPage();
+                return const SettingsPage();
             }
             return const CupertinoApp();
           },

@@ -1,5 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ulivery_mobile_app/pages/shopping_cart.dart';
 
 abstract class BasicPage extends StatefulWidget {
   final String title;
@@ -17,11 +17,10 @@ abstract class BasicPageState<T extends BasicPage> extends State<T> {
       appBar: AppBar(
         title: Text(widget.title),
         actions: [
-          //TODO: Replace with settings
           IconButton(
-            icon: Icon(Icons.logout, color: Theme.of(context).colorScheme.secondary),
+            icon: Icon(Icons.shopping_basket, color: Theme.of(context).colorScheme.secondary),
             onPressed: () async {
-              await FirebaseAuth.instance.signOut();
+              Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ShoppingCartPage()));
             },
           )
         ],
