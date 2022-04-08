@@ -49,13 +49,8 @@ class _ProductEnvironmentPageState extends BasicPageState<ProductEnvironmentPage
                       ProductEnvironment environment = snapshot.data![index];
                       return GestureDetector(
                         onTap: () {
-                          Navigator.of(context).push(
-                            CupertinoPageRoute<void>(
-                              builder: (BuildContext context) {
-                                return ProductPage(environment: environment);
-                              },
-                            ),
-                          );
+                          Navigator.of(context)
+                              .push(MaterialPageRoute(builder: (_) => ProductPage(environment: environment)));
                         },
                         child: Column(
                           children: [
