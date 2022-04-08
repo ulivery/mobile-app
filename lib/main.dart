@@ -9,6 +9,7 @@ import 'package:ulivery_mobile_app/pages/Deliveries/deliveries_overview_page.dar
 import 'package:ulivery_mobile_app/api/wallet.dart';
 import 'package:ulivery_mobile_app/pages/login/verify_email.dart';
 import 'package:ulivery_mobile_app/pages/onboarding.dart';
+import 'package:ulivery_mobile_app/pages/qr_code_scanner.dart';
 import 'package:ulivery_mobile_app/pages/tab_page.dart';
 import 'package:ulivery_mobile_app/util/theme.dart';
 import 'package:ulivery_mobile_app/util/utils.dart';
