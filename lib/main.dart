@@ -2,14 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ulivery_mobile_app/api/models.dart';
-import 'package:ulivery_mobile_app/pages/Deliveries/accept_deliveries_page.dart';
-import 'package:ulivery_mobile_app/pages/Deliveries/accept_order.dart';
-import 'package:ulivery_mobile_app/pages/Deliveries/complete_order.dart';
-import 'package:ulivery_mobile_app/pages/Deliveries/deliveries_overview_page.dart';
 import 'package:ulivery_mobile_app/api/wallet.dart';
 import 'package:ulivery_mobile_app/pages/login/verify_email.dart';
 import 'package:ulivery_mobile_app/pages/onboarding.dart';
-import 'package:ulivery_mobile_app/pages/tab_page.dart';
+import 'package:ulivery_mobile_app/pages/select_service.dart';
 import 'package:ulivery_mobile_app/util/theme.dart';
 import 'package:ulivery_mobile_app/util/utils.dart';
 
@@ -33,7 +29,7 @@ class UliveryApp extends StatelessWidget {
   const UliveryApp({Key? key}) : super(key: key);
 
   static void fadeHome() {
-    navigatorKey.currentState!.pushAndRemoveUntil(fadeRoute(const TabPage()), (route) => false);
+    navigatorKey.currentState!.pushAndRemoveUntil(fadeRoute(const SelectService()), (route) => false);
   }
 
   @override
