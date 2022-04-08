@@ -16,7 +16,6 @@ class Catalog extends Wrapper {
     if (response.statusCode == 200) {
       List<dynamic> json = jsonDecode(response.body);
       for (var item in json) {
-        print(item);
         environments.add(ProductEnvironment.fromJson(item));
       }
       return environments;
