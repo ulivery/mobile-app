@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:ulivery_mobile_app/api/models.dart';
 import 'package:ulivery_mobile_app/main.dart';
 import 'package:ulivery_mobile_app/pages/base.dart';
+import 'package:ulivery_mobile_app/pages/order.dart';
 
 class ShoppingCartPage extends BasicPage {
-  const ShoppingCartPage({Key? key}) : super(title: "Winkelwagen", key: key);
+  const ShoppingCartPage({Key? key})
+      : super(title: "Mijn bestelling", key: key);
 
   @override
   BasicPageState<ShoppingCartPage> createState() => _ShoppingCartPageState();
@@ -16,26 +18,36 @@ class _ShoppingCartPageState extends BasicPageState<ShoppingCartPage> {
   Widget buildBody(BuildContext context) {
     // Creates a map where product is the key and quantity is the value.
     var shoppingCartProducts = {};
-    for (var element in UliveryApp.shoppingCartProducts) {
-      if (!shoppingCartProducts.containsKey(element)) {
-        shoppingCartProducts[element] = 1;
+    for (var product in UliveryApp.shoppingCartProducts) {
+      if (!shoppingCartProducts.containsKey(product)) {
+        shoppingCartProducts[product] = 1;
       } else {
-        shoppingCartProducts[element] += 1;
+        shoppingCartProducts[product] += 1;
       }
     }
+
+    double shippingPrice = 1.0;
+    double productsPrice = 0.0;
+
+    for (var product in UliveryApp.shoppingCartProducts) {
+      productsPrice += product.price;
+    }
+
+    double shoppingCartPrice = shippingPrice + productsPrice;
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: shoppingCartProducts.isEmpty
           ? const Center(
               child: Text(
-                'Er zijn nog geen producten toegevoegd aan de winkelwagen.',
+                'Er zijn nog geen producten toegevoegd aan het winkelmandje.',
                 textAlign: TextAlign.center,
               ),
             )
           : Column(
               children: [
                 Expanded(
+                  flex: 2,
                   child: ListView.builder(
                     itemCount: shoppingCartProducts.length,
                     itemBuilder: (BuildContext context, int index) {
@@ -169,18 +181,6 @@ class _ShoppingCartPageState extends BasicPageState<ShoppingCartPage> {
                                         )),
                                   ],
                                 ),
-                                Row(
-                                  children: [
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(left: 65.0),
-                                      child: Text(
-                                        key.shortDescription,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ),
-                                  ],
-                                ),
                                 const Padding(
                                   padding: EdgeInsets.fromLTRB(65, 0, 0, 0),
                                   child: Divider(
@@ -194,6 +194,54 @@ class _ShoppingCartPageState extends BasicPageState<ShoppingCartPage> {
                         ],
                       );
                     },
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Column(
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: const [
+                              Text('Subtotaal'),
+                              Text('Bezorgkosten'),
+                              Text(
+                                'Totaal',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              )
+                            ],
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('€ ' + productsPrice.toStringAsFixed(2)),
+                              Text('€ ' + shippingPrice.toStringAsFixed(2)),
+                              Text(
+                                '€ ' + shoppingCartPrice.toStringAsFixed(2),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20.0,
+                      ),
+                      CupertinoButton.filled(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(100.0)),
+                        child: const Text('Bestellen'),
+                        onPressed: () {
+                          Navigator.of(context).push(CupertinoPageRoute(
+                              builder: (_) => const OrderPage()));
+                        },
+                      )
+                    ],
                   ),
                 ),
               ],
