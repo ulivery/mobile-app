@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
+<<<<<<< Updated upstream
 import 'package:ulivery_mobile_app/pages/login/login.dart';
+=======
+import 'package:ulivery_mobile_app/main.dart';
+>>>>>>> Stashed changes
 import 'package:ulivery_mobile_app/pages/product_environment.dart';
 
 class TabPage extends StatefulWidget {
@@ -16,14 +20,17 @@ class _TabPageState extends State<TabPage> {
       tabBar: CupertinoTabBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
+<<<<<<< Updated upstream
               icon: Icon(CupertinoIcons.house),
               activeIcon: Icon(CupertinoIcons.house_fill),
               label: 'Home'),
+=======
+              icon: Icon(UliveryApp.homeIcon), label: 'Home'),
+>>>>>>> Stashed changes
           BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.doc_text),
-              activeIcon: Icon(CupertinoIcons.doc_text_fill),
-              label: 'Bestellingen'),
+              icon: Icon(UliveryApp.orderIcon), label: 'Bestellingen'),
           BottomNavigationBarItem(
+<<<<<<< Updated upstream
               icon: Icon(CupertinoIcons.bag),
               activeIcon: Icon(CupertinoIcons.bag_fill),
               label: 'Winkelmand'),
@@ -31,6 +38,11 @@ class _TabPageState extends State<TabPage> {
               icon: Icon(CupertinoIcons.ellipsis),
               activeIcon: Icon(CupertinoIcons.person_fill),
               label: 'Meer'),
+=======
+              icon: Icon(UliveryApp.walletIcon), label: 'Wallet'),
+          BottomNavigationBarItem(
+              icon: Icon(UliveryApp.settingsIcon), label: 'Instellingen'),
+>>>>>>> Stashed changes
         ],
       ),
       tabBuilder: (BuildContext context, int index) {

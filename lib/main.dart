@@ -26,7 +26,12 @@ void main() async {
 class UliveryApp extends StatelessWidget {
   static final GlobalKey<NavigatorState> navigatorKey =
       GlobalKey<NavigatorState>();
+<<<<<<< Updated upstream
   static late final Catalog catalog;
+=======
+  static final Catalog catalog = Catalog();
+  static final Wallet wallet = Wallet();
+>>>>>>> Stashed changes
   static List<Product> shoppingCartProducts = [];
 
   UliveryApp({Key? key}) : super(key: key) {
@@ -34,8 +39,22 @@ class UliveryApp extends StatelessWidget {
   }
 
   static void fadeHome() {
-    navigatorKey.currentState!.pushAndRemoveUntil(fadeRoute(const SelectService()), (route) => false);
+    navigatorKey.currentState!
+        .pushAndRemoveUntil(fadeRoute(const SelectService()), (route) => false);
   }
+
+  static const _kFontFam = 'UliveryAppIcons';
+  static const String? _kFontPkg = null;
+  static const IconData settingsIcon =
+      IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData homeIcon =
+      IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData orderIcon =
+      IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData shoppingCartIcon =
+      IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData walletIcon =
+      IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 
   @override
   Widget build(BuildContext context) {
