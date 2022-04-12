@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ulivery_mobile_app/pages/qr_code_scanner.dart';
 import 'package:ulivery_mobile_app/widgets/rounded_button.dart';
 
 class DeliverOrder extends StatefulWidget {
@@ -110,12 +111,10 @@ class _DeliverOrderBodyState extends State<DeliverOrderBody> {
           Container(
               child: Center(
                   child: RoundedButton(
-            text: 'Stuur bericht naar de klant',
-            press: () {},
-            color: Theme.of(context).colorScheme.secondary,
-            textColor: Theme.of(context).colorScheme.primary,
-          ))),
-          Container(child: Center(child: RoundedButton(text: 'Scan QR-code voor aflevering', press: () {}))),
+                      text: 'Scan QR-code voor aflevering',
+                      press: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (_) => const QRScanner()));
+                      }))),
         ],
       ),
     );
