@@ -12,7 +12,7 @@ class _AcceptDeliveriesPageState extends State<AcceptDeliveriesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Ulivery"),
+        title: Text("Bestellingsoverzicht"),
       ),
       body: AcceptDeliveriesPageBody(),
     );
@@ -30,107 +30,36 @@ class _AcceptDeliveriesPageBodyState extends State<AcceptDeliveriesPageBody> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Expanded(
-          child: Table(
-            columnWidths: {
-              0: FlexColumnWidth(2.5),
-              1: FlexColumnWidth(2.5),
-              2: FlexColumnWidth(2.5),
-              3: FlexColumnWidth(2.5)
-            },
-            children: [
-              TableRow(
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                      color: Theme.of(context).colorScheme.primary,
-                      width: 1
-                    )
-                  )
-                ),
-                children: [
-                  Text("Order", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18), textAlign: TextAlign.center,),
-                  Text("Acceptatietijd", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18), textAlign: TextAlign.center,),
-                  Text("Bezorgtijd" , style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18), textAlign: TextAlign.center,),
-                  Text("Acceptatie" , style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18), textAlign: TextAlign.center,)
-                ]
-              ),
-              TableRow(
-                  decoration: BoxDecoration(
-                      border: Border(
-                          bottom: BorderSide(
-                              color: Theme.of(context).colorScheme.primary,
-                              width: 1
-                          )
-                      )
-                  ),
-                children: [
-                  TableCell(
-                    verticalAlignment: TableCellVerticalAlignment.middle,
-                      child: Text("#897", textAlign: TextAlign.center, style: TextStyle(fontSize: 18),)),
-                  TableCell(
-                      verticalAlignment: TableCellVerticalAlignment.middle,
-                      child: Text("-", textAlign: TextAlign.center, style: TextStyle(fontSize: 18))),
-                  TableCell(
-                      verticalAlignment: TableCellVerticalAlignment.middle,
-                      child: Text("30 min.", textAlign: TextAlign.center, style: TextStyle(fontSize: 18))),
-                  TableCell(
-                      verticalAlignment: TableCellVerticalAlignment.middle,
-                      child: Icon(Icons.check_circle_rounded, size: 50,))
-                ]
-              ),
-              TableRow(
-                  decoration: BoxDecoration(
-                      border: Border(
-                          bottom: BorderSide(
-                              color: Theme.of(context).colorScheme.primary,
-                              width: 1
-                          )
-                      )
-                  ),
-                  children: [
-                    TableCell(
-                        verticalAlignment: TableCellVerticalAlignment.middle,
-                        child: Text("#897", textAlign: TextAlign.center, style: TextStyle(fontSize: 18),)),
-                    TableCell(
-                        verticalAlignment: TableCellVerticalAlignment.middle,
-                        child: Text("9 min", textAlign: TextAlign.center, style: TextStyle(fontSize: 18))),
-                    TableCell(
-                        verticalAlignment: TableCellVerticalAlignment.middle,
-                        child: Text("30 min.", textAlign: TextAlign.center, style: TextStyle(fontSize: 18))),
-                    TableCell(
-                        verticalAlignment: TableCellVerticalAlignment.middle,
-                        child: Icon(Icons.check_circle_outline, size: 50,))
-                  ]
-              ),
-              TableRow(
-                  decoration: BoxDecoration(
-                      border: Border(
-                          bottom: BorderSide(
-                              color: Theme.of(context).colorScheme.primary,
-                              width: 1
-                          )
-                      )
-                  ),
-                  children: [
-                    TableCell(
-                        verticalAlignment: TableCellVerticalAlignment.middle,
-                        child: Text("#897", textAlign: TextAlign.center, style: TextStyle(fontSize: 18),)),
-                    TableCell(
-                        verticalAlignment: TableCellVerticalAlignment.middle,
-                        child: Text("9 min", textAlign: TextAlign.center, style: TextStyle(fontSize: 18))),
-                    TableCell(
-                        verticalAlignment: TableCellVerticalAlignment.middle,
-                        child: Text("30 min.", textAlign: TextAlign.center, style: TextStyle(fontSize: 18))),
-                    TableCell(
-                        verticalAlignment: TableCellVerticalAlignment.middle,
-                        child: Icon(Icons.check_circle_outline, size: 50,))
-                  ]
-              ),
-            ],
-          ),
+      child: ListView(
+        children: <Widget>[
+          OrderCard(acceptatietijd: '9 min', ordernummer: '#897', bezorgtijd: '30 min', icon: Icons.check_circle_outline, iconcolor: Theme.of(context).colorScheme.primary,),
+          OrderCard(ordernummer: '#898', acceptatietijd: "12 min", bezorgtijd: "30 min", icon: Icons.check_circle_rounded, iconcolor: Colors.green,)
+        ],
+      ) ,);
+  }
+}
 
-        ),
+class OrderCard extends StatelessWidget {
+  final String ordernummer;
+  final String acceptatietijd;
+  final String bezorgtijd;
+  final IconData icon;
+  final Color iconcolor;
+  const OrderCard({
+    Key? key, required this.ordernummer, required this.acceptatietijd, required this.bezorgtijd, required this.icon, required this.iconcolor
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: ListTile(
+        leading: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[Text(ordernummer),],),
+        title: Text("Acceptatietijd: $acceptatietijd."),
+        subtitle: Text("Bezorgtijd: $bezorgtijd."),
+        trailing: Icon(icon, size: 50, color: iconcolor,),
+      ),
     );
   }
 }

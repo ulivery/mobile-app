@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ulivery_mobile_app/api/models.dart';
 import 'package:ulivery_mobile_app/api/wallet.dart';
+import 'package:ulivery_mobile_app/pages/deliveries/accept_deliveries_page.dart';
 import 'package:ulivery_mobile_app/pages/login/verify_email.dart';
 import 'package:ulivery_mobile_app/pages/onboarding.dart';
 import 'package:ulivery_mobile_app/pages/select_service.dart';
