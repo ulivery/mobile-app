@@ -90,7 +90,7 @@ class _LoginPageBodyState extends State<LoginPageBody> {
 
                           try {
                             await FirebaseAuth.instance
-                                .signInWithEmailAndPassword(email: _email.text, password: _password.text);
+                                .signInWithEmailAndPassword(email: _email.text.trim(), password: _password.text);
                           } on FirebaseAuthException catch (e) {
                             if (e.code == 'user-disabled') {
                               setState(() {

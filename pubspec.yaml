@@ -35,3 +35,8 @@ flutter:
     - assets/onboarding.json
     - assets/img/services/
     - assets/img/payments/
+  fonts:
+   - family:  UliveryAppIcons
+     fonts:
+     - asset: fonts/UliveryAppIcons.ttf
+  

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ulivery_mobile_app/main.dart';
+import 'package:ulivery_mobile_app/pages/shopping_cart.dart';
 import 'package:ulivery_mobile_app/pages/shopping_cart.dart';
 
 abstract class BasicPage extends StatefulWidget {

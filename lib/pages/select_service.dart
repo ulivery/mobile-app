@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ulivery_mobile_app/pages/product_environment.dart';
+import 'package:ulivery_mobile_app/pages/tab_page.dart';
+
+import 'Deliveries/complete_order.dart';
+import 'deliveries/accept_deliveries_page.dart';
 
 class SelectService extends StatelessWidget {
   const SelectService({Key? key}) : super(key: key);
@@ -34,7 +37,7 @@ class ServicePageBody extends StatelessWidget {
               image: 'assets/img/services/eten_bestellen.png',
               text: 'Ik wil eten bestellen',
               pressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ProductEnvironmentPage()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TabPage()));
               }),
           SizedBox(
             height: screenHeight * 0.02,
@@ -43,7 +46,9 @@ class ServicePageBody extends StatelessWidget {
             screenHeight: screenHeight,
             text: "Ik wil eten bezorgen",
             image: "assets/img/services/eten_bezorgen.png",
-            pressed: () {},
+            pressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (_) => const AcceptDeliveriesPage()));
+            },
           )
         ],
       ),
