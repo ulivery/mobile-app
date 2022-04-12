@@ -164,7 +164,7 @@ class _ProductPageState extends BasicPageState<ProductPage> {
                       AsyncSnapshot<List<ProductCategory>> snapshot) {
                     if (snapshot.hasData) {
                       if (snapshot.data!.isEmpty) {
-                        return FutureUtils.noResults();
+                        return Container();
                       }
 
                       // Set category to first one
