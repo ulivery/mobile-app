@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ulivery_mobile_app/pages/tab_page.dart';
 
 import 'Deliveries/complete_order.dart';
+import 'deliveries/accept_deliveries_page.dart';
 
 class SelectService extends StatelessWidget {
   const SelectService({Key? key}) : super(key: key);
@@ -46,7 +47,7 @@ class ServicePageBody extends StatelessWidget {
             text: "Ik wil eten bezorgen",
             image: "assets/img/services/eten_bezorgen.png",
             pressed: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DeliverOrder()));
+              Navigator.of(context).push(MaterialPageRoute(builder: (_) => const AcceptDeliveriesPage()));
             },
           )
         ],
