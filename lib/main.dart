@@ -8,7 +8,6 @@ import 'package:ulivery_mobile_app/pages/onboarding.dart';
 import 'package:ulivery_mobile_app/pages/select_service.dart';
 import 'package:ulivery_mobile_app/util/theme.dart';
 import 'package:ulivery_mobile_app/util/utils.dart';
-
 import 'api/catalog.dart';
 import 'firebase_options.dart';
 
