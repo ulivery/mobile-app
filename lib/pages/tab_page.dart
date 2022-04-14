@@ -3,6 +3,7 @@ import 'package:ulivery_mobile_app/pages/login/login.dart';
 import 'package:ulivery_mobile_app/main.dart';
 import 'package:ulivery_mobile_app/pages/product_environment.dart';
 import 'package:ulivery_mobile_app/pages/settings.dart';
+import 'package:ulivery_mobile_app/pages/customer_orders.dart';
 import 'package:ulivery_mobile_app/pages/wallet/wallet_overview.dart';
 
 class TabPage extends StatefulWidget {
@@ -39,7 +40,7 @@ class _TabPageState extends State<TabPage> {
               case 0:
                 return const ProductEnvironmentPage();
               case 1:
-                return Container();
+                return CustomerOrders();
               case 2:
                 return const WalletOverview();
               case 3:

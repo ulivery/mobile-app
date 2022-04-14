@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ulivery_mobile_app/pages/Deliveries/complete_order.dart';
+import 'package:ulivery_mobile_app/pages/deliveries/accept_deliveries_page.dart';
+import 'package:ulivery_mobile_app/pages/deliveries/accept_order.dart';
 
 class DeliveriesOverviewPage extends StatefulWidget {
   const DeliveriesOverviewPage({Key? key}) : super(key: key);
@@ -30,106 +33,11 @@ class _DeliveriesOverviewPageBodyState extends State<DeliveriesOverviewPageBody>
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Expanded(
-        child: Table(
-          columnWidths: {
-            0: FlexColumnWidth(2.5),
-            1: FlexColumnWidth(2.5),
-            2: FlexColumnWidth(2.5),
-            3: FlexColumnWidth(2.5)
-          },
-          children: [
-            TableRow(
-                decoration: BoxDecoration(
-                    border: Border(
-                        bottom: BorderSide(
-                            color: Theme.of(context).colorScheme.primary,
-                            width: 1
-                        )
-                    )
-                ),
-                children: [
-                  Text("Order", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18), textAlign: TextAlign.center,),
-                  Text("Acceptatietijd", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18), textAlign: TextAlign.center,),
-                  Text("Bezorgtijd" , style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18), textAlign: TextAlign.center,),
-                  Text("Acceptatie" , style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18), textAlign: TextAlign.center,)
-                ]
-            ),
-            TableRow(
-                decoration: BoxDecoration(
-                    border: Border(
-                        bottom: BorderSide(
-                            color: Theme.of(context).colorScheme.primary,
-                            width: 1
-                        )
-                    )
-                ),
-                children: [
-                  TableCell(
-                      verticalAlignment: TableCellVerticalAlignment.middle,
-                      child: Text("#897", textAlign: TextAlign.center, style: TextStyle(fontSize: 18),)),
-                  TableCell(
-                      verticalAlignment: TableCellVerticalAlignment.middle,
-                      child: Text("-", textAlign: TextAlign.center, style: TextStyle(fontSize: 18))),
-                  TableCell(
-                      verticalAlignment: TableCellVerticalAlignment.middle,
-                      child: Text("30 min.", textAlign: TextAlign.center, style: TextStyle(fontSize: 18))),
-                  TableCell(
-                      verticalAlignment: TableCellVerticalAlignment.middle,
-                      child: Icon(Icons.check_circle_rounded, size: 50,))
-                ]
-            ),
-            TableRow(
-                decoration: BoxDecoration(
-                    border: Border(
-                        bottom: BorderSide(
-                            color: Theme.of(context).colorScheme.primary,
-                            width: 1
-                        )
-                    )
-                ),
-                children: [
-                  TableCell(
-                      verticalAlignment: TableCellVerticalAlignment.middle,
-                      child: Text("#897", textAlign: TextAlign.center, style: TextStyle(fontSize: 18),)),
-                  TableCell(
-                      verticalAlignment: TableCellVerticalAlignment.middle,
-                      child: Text("9 min", textAlign: TextAlign.center, style: TextStyle(fontSize: 18))),
-                  TableCell(
-                      verticalAlignment: TableCellVerticalAlignment.middle,
-                      child: Text("30 min.", textAlign: TextAlign.center, style: TextStyle(fontSize: 18))),
-                  TableCell(
-                      verticalAlignment: TableCellVerticalAlignment.middle,
-                      child: Icon(Icons.check_circle_outline, size: 50,))
-                ]
-            ),
-            TableRow(
-                decoration: BoxDecoration(
-                    border: Border(
-                        bottom: BorderSide(
-                            color: Theme.of(context).colorScheme.primary,
-                            width: 1
-                        )
-                    )
-                ),
-                children: [
-                  TableCell(
-                      verticalAlignment: TableCellVerticalAlignment.middle,
-                      child: Text("#897", textAlign: TextAlign.center, style: TextStyle(fontSize: 18),)),
-                  TableCell(
-                      verticalAlignment: TableCellVerticalAlignment.middle,
-                      child: Text("9 min", textAlign: TextAlign.center, style: TextStyle(fontSize: 18))),
-                  TableCell(
-                      verticalAlignment: TableCellVerticalAlignment.middle,
-                      child: Text("30 min.", textAlign: TextAlign.center, style: TextStyle(fontSize: 18))),
-                  TableCell(
-                      verticalAlignment: TableCellVerticalAlignment.middle,
-                      child: Icon(Icons.check_circle_outline, size: 50,))
-                ]
-            ),
-          ],
-        ),
-
+      child: ListView(
+        children: <Widget>[
+          OrderCard(acceptatietijd: '9 min', ordernummer: '#897', bezorgtijd: '30 min', icon: Icons.check_circle_outline, iconcolor: Theme.of(context).colorScheme.primary, press: () {Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DeliverOrder()));  },),
+          OrderCard(ordernummer: '#898', acceptatietijd: "12 min", bezorgtijd: "30 min", icon: Icons.check_circle_rounded, iconcolor: Colors.green, press: () {Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DeliverOrder()));  },)
+        ],
       ),
     );
   }
