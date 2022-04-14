@@ -1,22 +1,22 @@
 [
   {
-    "title": "Lorem ipsum dolor sit amet, consectetur.",
-    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fringilla quam eu faci lisi.",
+    "title": "Welkom bij de Ulivery app!",
+    "text": "Met deze app kun je eenvoudig eten & drinken bestellen uit je lokale kantine.",
     "image": "assets/img/onboarding/onboarding_1.png"
   },
   {
-    "title": "Lorem ipsum dolor sit amet, consectetur.",
-    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fringilla quam eu faci lisi.",
+    "title": "Bestel bij je lokale kantine of restaurant.",
+    "text": "In het overzicht vind je alle aangesloten locaties, niet alleen je lokale kantine, maar wellicht ook een restaurant in de buurt.",
     "image": "assets/img/onboarding/onboarding_2.png"
   },
   {
-    "title": "Lorem ipsum dolor sit amet, consectetur.",
-    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fringilla quam eu faci lisi.",
-    "image": "assets/img/onboarding/onboarding_1.png"
+    "title": "Wil je iets verdienen met bezorgen?",
+    "text": "Met de Ulivery app kun je gemakkelijk bestellingen als bezorger accepteren en afleveren bij een besteller, hiervoor ontvang jij een vergoeding je zelf weer kunt gebruiken om eten te bestellen!",
+    "image": "assets/img/onboarding/onboarding_2.png"
   },
   {
-    "title": "Lorem ipsum dolor sit amet, consectetur.",
-    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fringilla quam eu faci lisi.",
-    "image": "assets/img/onboarding/onboarding_2.png"
+    "title": "Gemakkelijk en veilig betalen!",
+    "text": "Je kunt je tegoed opwaarderen met iDeal in je wallet, hiermee kun je gemakkelijk én snel iets bestellen.",
+    "image": "assets/img/onboarding/onboarding_3.png"
   }
 ]
