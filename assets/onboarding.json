@@ -1,22 +1,23 @@
 [
   {
-    "title": "Bestel je favoriete producten",
-    "text": "Bestel je favoriete producten met Ulivery, ze worden tot aan je tafel bezorgd!",
+
+    "title": "Welkom bij de Ulivery app!",
+    "text": "Met deze app kun je eenvoudig eten & drinken bestellen uit je lokale kantine.",
     "image": "assets/img/onboarding/onboarding_1.png"
   },
   {
-    "title": "Zakcentje verdienen?",
-    "text": "Bezorgen is niet alleen leuk, maar je verdient er ook nog wat mee!",
+    "title": "Bestel bij je lokale kantine of restaurant.",
+    "text": "In het overzicht vind je alle aangesloten locaties, niet alleen je lokale kantine, maar wellicht ook een restaurant in de buurt.",
     "image": "assets/img/onboarding/onboarding_2.png"
   },
   {
-    "title": "Wordt de beste bezorger",
-    "text": "Scoor punten om naar een nieuw level te gaan en zo hoger in de ranglijst te komen!",
-    "image": "assets/img/onboarding/onboarding_1.png"
+    "title": "Wil je iets verdienen met bezorgen?",
+    "text": "Met de Ulivery app kun je gemakkelijk bestellingen als bezorger accepteren en afleveren bij een besteller, hiervoor ontvang jij een vergoeding je zelf weer kunt gebruiken om eten te bestellen!",
+    "image": "assets/img/onboarding/onboarding_2.png"
   },
   {
-    "title": "Benieuwd? Neem eens een kijkje.",
-    "text": "Hebben we je benieuwd gemaakt? Neem een kijkje in de app! Een bestelling plaatsen is zo gepiept.",
-    "image": "assets/img/onboarding/onboarding_2.png"
+    "title": "Gemakkelijk en veilig betalen!",
+    "text": "Je kunt je tegoed opwaarderen met iDeal in je wallet, hiermee kun je gemakkelijk én snel iets bestellen.",
+    "image": "assets/img/onboarding/onboarding_3.png"
   }
 ]

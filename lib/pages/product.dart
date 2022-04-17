@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:ulivery_mobile_app/api/models.dart';
 import 'package:ulivery_mobile_app/main.dart';
 import 'package:ulivery_mobile_app/pages/base.dart';
+import 'package:ulivery_mobile_app/pages/shopping_cart.dart';
 import 'package:ulivery_mobile_app/util/utils.dart';
 
 class ProductPage extends BasicPage {
   final ProductEnvironment environment;
 
-  const ProductPage({required this.environment, Key? key}) : super(title: "Producten", key: key);
+  const ProductPage({required this.environment, Key? key})
+      : super(title: "Producten", key: key);
 
   @override
   BasicPageState<ProductPage> createState() => _ProductPageState();
@@ -18,30 +20,7 @@ class _ProductPageState extends BasicPageState<ProductPage> {
   int _category = 0;
   String _search = "";
 
-  static Route<void> _modalBuilder(
-    BuildContext context,
-    Object? arguments,
-  ) {
-    return CupertinoModalPopupRoute<void>(
-      builder: (BuildContext context) {
-        return SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: 250,
-          child: CupertinoPicker(
-            itemExtent: 30,
-            onSelectedItemChanged: null,
-            backgroundColor: Colors.white,
-            scrollController: FixedExtentScrollController(initialItem: 1),
-            children: [
-              Text(arguments.toString()),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
-  static Route<void> _modalBuilder2(BuildContext context, Object? arguments) {
+  static Route<void> _modalBuilder2(BuildContext context, dynamic arguments) {
     return CupertinoModalPopupRoute<void>(
       builder: (BuildContext context) {
         return Dismissible(
@@ -55,7 +34,7 @@ class _ProductPageState extends BasicPageState<ProductPage> {
               body: Column(
                 children: [
                   Expanded(
-                    flex: 2,
+                    flex: 3,
                     child: Row(
                       children: [
                         Stack(
@@ -64,7 +43,10 @@ class _ProductPageState extends BasicPageState<ProductPage> {
                             Container(
                               width: MediaQuery.of(context).size.width,
                               padding: const EdgeInsets.only(bottom: 25.0),
-                              child: Image.asset('assets/ProductPage/ProductTempeh.png', fit: BoxFit.cover),
+                              child: Image.network(
+                                arguments["productImage"],
+                                fit: BoxFit.cover,
+                              ),
                             ),
                             ClipRRect(
                               child: Column(
@@ -76,8 +58,8 @@ class _ProductPageState extends BasicPageState<ProductPage> {
                                       children: [
                                         Column(
                                           children: [
-                                            Image.asset(
-                                              'assets/ProductPage/ProductTypeVegan.png',
+                                            Image.network(
+                                              'https://cdn.ulivery.nl/files/00ca11db-d274-4d33-ae3c-9176c242d61a.png',
                                               width: 50.0,
                                               height: 50.0,
                                             )
@@ -85,8 +67,8 @@ class _ProductPageState extends BasicPageState<ProductPage> {
                                         ),
                                         Column(
                                           children: [
-                                            Image.asset(
-                                              'assets/ProductPage/ProductTypeVegan.png',
+                                            Image.network(
+                                              'https://cdn.ulivery.nl/files/00ca11db-d274-4d33-ae3c-9176c242d61a.png',
                                               width: 50.0,
                                               height: 50.0,
                                             )
@@ -103,72 +85,20 @@ class _ProductPageState extends BasicPageState<ProductPage> {
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                    child: Expanded(
-                      flex: 1,
+                  Expanded(
+                    flex: 2,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
                       child: Column(
-                        children: const [
-                          Text(
-                            'Volkoren sandwich',
-                            overflow: TextOverflow.clip,
-                            style: TextStyle(fontSize: 30.0),
-                          ),
-                          SizedBox(height: 10.0),
-                          Text(
-                              'Een verantwoorde, veganistische sandwiche van 2 sneeën vegan volkorenbrood met daarop gegrilde aubergine, little gem sla, granaatappelpitjes en chimichurri (een mix van rode peper, knoflook, tomaat, rode ui, dille, zeezout, basilicum en dragon).',
-                              overflow: TextOverflow.clip),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                    child: Expanded(
-                      flex: 1,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const SizedBox(height: 10.0),
-                          const Text(
-                            'Voedingswaarden',
+                          Text(
+                            arguments["productName"],
                             overflow: TextOverflow.clip,
-                            style: TextStyle(fontSize: 30.0),
+                            style: const TextStyle(fontSize: 30.0),
                           ),
                           const SizedBox(height: 10.0),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Text('energie'),
-                                  Text('natrium'),
-                                  Text('eiwit'),
-                                  Text('zout'),
-                                  Text('vezels')
-                                ],
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [Text('0'), Text('0'), Text('0'), Text('0'), Text('0')],
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Text('koolhydraten'),
-                                  Text('waarvan suikers'),
-                                  Text('vet'),
-                                  Text('waarvan verzadigd')
-                                ],
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [Text('0'), Text('0'), Text('0'), Text('0')],
-                              ),
-                            ],
-                          )
+                          Text(arguments["productLongDescription"],
+                              overflow: TextOverflow.clip),
                         ],
                       ),
                     ),
@@ -179,16 +109,20 @@ class _ProductPageState extends BasicPageState<ProductPage> {
                       children: [
                         const SizedBox(height: 10.0),
                         CupertinoButton.filled(
-                            borderRadius: const BorderRadius.all(Radius.circular(100.0)),
-                            child: const Text('Voeg toe aan bestelling'),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            }),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(100.0)),
+                          child: const Text('Voeg toe aan bestelling'),
+                          onPressed: () {
+                            // UliveryApp.shoppingCartProducts.add(product);
+                            Navigator.pop(context);
+                          },
+                        ),
                         CupertinoButton(
-                            child: const Text('Kijk verder'),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            })
+                          child: const Text('Kijk verder'),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                        ),
                       ],
                     ),
                   ),
@@ -224,8 +158,10 @@ class _ProductPageState extends BasicPageState<ProductPage> {
               height: 30.0,
               padding: const EdgeInsets.symmetric(vertical: 2),
               child: FutureBuilder(
-                  future: UliveryApp.catalog.getCategories(environmentId: widget.environment.id),
-                  builder: (BuildContext context, AsyncSnapshot<List<ProductCategory>> snapshot) {
+                  future: UliveryApp.catalog
+                      .getCategories(environmentId: widget.environment.id),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<List<ProductCategory>> snapshot) {
                     if (snapshot.hasData) {
                       if (snapshot.data!.isEmpty) {
                         return Container();
@@ -249,18 +185,18 @@ class _ProductPageState extends BasicPageState<ProductPage> {
                         itemBuilder: (BuildContext context, int index) {
                           ProductCategory category = snapshot.data![index];
                           return ElevatedButton(
-                            style: _category == category.id
-                                ? ButtonStyle(
-                                    backgroundColor:
-                                        MaterialStateProperty.all<Color>(Theme.of(context).colorScheme.primary),
-                                    foregroundColor:
-                                        MaterialStateProperty.all<Color>(Theme.of(context).colorScheme.secondary))
-                                : ButtonStyle(
-                                    backgroundColor:
-                                        MaterialStateProperty.all<Color>(Theme.of(context).colorScheme.secondary),
-                                    foregroundColor:
-                                        MaterialStateProperty.all<Color>(Theme.of(context).colorScheme.primary)),
-                            child: Text(category.name, style: const TextStyle(fontWeight: FontWeight.w600)),
+                            style: ButtonStyle(
+                                elevation:
+                                    MaterialStateProperty.all<double?>(0.0),
+                                backgroundColor: MaterialStateProperty.all<
+                                        Color>(
+                                    Theme.of(context).colorScheme.secondary),
+                                foregroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Theme.of(context).colorScheme.primary)),
+                            child: Text(category.name,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w600)),
                             onPressed: () {
                               setState(() {
                                 _category = category.id;
@@ -282,8 +218,10 @@ class _ProductPageState extends BasicPageState<ProductPage> {
             Expanded(
               child: FutureBuilder(
                 key: ValueKey(_search + _category.toString()),
-                future: UliveryApp.catalog.getProducts(categoryId: _category, search: _search),
-                builder: (BuildContext context, AsyncSnapshot<List<Product>> snapshot) {
+                future: UliveryApp.catalog
+                    .getProducts(categoryId: _category, search: _search),
+                builder: (BuildContext context,
+                    AsyncSnapshot<List<Product>> snapshot) {
                   if (snapshot.hasData) {
                     if (snapshot.data!.isEmpty) {
                       return FutureUtils.noResults();
@@ -297,23 +235,36 @@ class _ProductPageState extends BasicPageState<ProductPage> {
                           children: <Widget>[
                             GestureDetector(
                               onTap: () {
-                                Navigator.of(context).restorablePush(_modalBuilder2, arguments: {'product': product});
+                                Navigator.of(context, rootNavigator: true)
+                                    .restorablePush(_modalBuilder2, arguments: {
+                                  'productName': product.name,
+                                  'productImage': product.image,
+                                  'productShortDescription':
+                                      product.shortDescription,
+                                  'productLongDescription':
+                                      product.longDescription
+                                });
                               },
                               child: Column(
                                 children: [
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsets.only(right: 15.0),
+                                        padding:
+                                            const EdgeInsets.only(right: 15.0),
                                         child: Container(
                                           height: 50,
                                           width: 50,
                                           decoration: BoxDecoration(
-                                            borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+                                            borderRadius:
+                                                const BorderRadius.all(
+                                                    Radius.circular(8.0)),
                                             image: DecorationImage(
-                                              image: NetworkImage(product.image),
+                                              image:
+                                                  NetworkImage(product.image),
                                               fit: BoxFit.cover,
                                             ),
                                           ),
@@ -327,7 +278,9 @@ class _ProductPageState extends BasicPageState<ProductPage> {
                                               alignment: Alignment.topLeft,
                                               child: Text(
                                                 product.name,
-                                                style: const TextStyle(fontWeight: FontWeight.bold),
+                                                style: const TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.bold),
                                               ),
                                             ),
                                             const SizedBox(
@@ -335,7 +288,8 @@ class _ProductPageState extends BasicPageState<ProductPage> {
                                             ),
                                             Container(
                                               alignment: Alignment.topLeft,
-                                              child: Text('€ ' + product.price.toString()),
+                                              child: Text('€ ' +
+                                                  product.price.toString()),
                                             ),
                                           ],
                                         ),
@@ -344,8 +298,12 @@ class _ProductPageState extends BasicPageState<ProductPage> {
                                         flex: 1,
                                         child: GestureDetector(
                                           onTap: () {
-                                            Navigator.of(context)
-                                                .restorablePush(_modalBuilder, arguments: {'product': product});
+                                            UliveryApp.shoppingCartProducts
+                                                .add(product);
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(SnackBar(
+                                                    content: Text(product.name +
+                                                        " toegevoegd aan winkelmandje.")));
                                           },
                                           child: Container(
                                             height: 50,
@@ -353,7 +311,8 @@ class _ProductPageState extends BasicPageState<ProductPage> {
                                             child: const Icon(
                                               CupertinoIcons.add_circled_solid,
                                               size: 40,
-                                              color: Color.fromRGBO(6, 50, 58, 1),
+                                              color:
+                                                  Color.fromRGBO(6, 50, 58, 1),
                                             ),
                                           ),
                                         ),
@@ -363,7 +322,8 @@ class _ProductPageState extends BasicPageState<ProductPage> {
                                   Row(
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsets.only(left: 65.0),
+                                        padding:
+                                            const EdgeInsets.only(left: 65.0),
                                         child: Text(
                                           product.shortDescription,
                                           overflow: TextOverflow.ellipsis,

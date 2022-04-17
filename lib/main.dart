@@ -8,7 +8,6 @@ import 'package:ulivery_mobile_app/pages/onboarding.dart';
 import 'package:ulivery_mobile_app/pages/select_service.dart';
 import 'package:ulivery_mobile_app/util/theme.dart';
 import 'package:ulivery_mobile_app/util/utils.dart';
-
 import 'api/catalog.dart';
 import 'firebase_options.dart';
 
@@ -31,6 +30,14 @@ class UliveryApp extends StatelessWidget {
   static void fadeHome() {
     navigatorKey.currentState!.pushAndRemoveUntil(fadeRoute(const SelectService()), (route) => false);
   }
+
+  static const _kFontFam = 'UliveryAppIcons';
+  static const String? _kFontPkg = null;
+  static const IconData settingsIcon = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData homeIcon = IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData orderIcon = IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData shoppingCartIcon = IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData walletIcon = IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 
   @override
   Widget build(BuildContext context) {

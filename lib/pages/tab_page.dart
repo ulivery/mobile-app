@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
+import 'package:ulivery_mobile_app/pages/login/login.dart';
+import 'package:ulivery_mobile_app/main.dart';
 import 'package:ulivery_mobile_app/pages/product_environment.dart';
 import 'package:ulivery_mobile_app/pages/settings.dart';
+import 'package:ulivery_mobile_app/pages/customer_orders.dart';
 import 'package:ulivery_mobile_app/pages/wallet/wallet_overview.dart';
 
 class TabPage extends StatefulWidget {
@@ -17,11 +20,11 @@ class _TabPageState extends State<TabPage> {
       tabBar: CupertinoTabBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.house), activeIcon: Icon(CupertinoIcons.house_fill), label: 'Home'),
+              icon: Icon(CupertinoIcons.house),
+              activeIcon: Icon(CupertinoIcons.house_fill),
+              label: 'Home'),
           BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.doc_text),
-              activeIcon: Icon(CupertinoIcons.doc_text_fill),
-              label: 'Bestellingen'),
+              icon: Icon(UliveryApp.orderIcon), label: 'Bestellingen'),
           BottomNavigationBarItem(
               icon: Icon(CupertinoIcons.money_euro_circle),
               activeIcon: Icon(CupertinoIcons.money_euro_circle_fill),
@@ -37,7 +40,7 @@ class _TabPageState extends State<TabPage> {
               case 0:
                 return const ProductEnvironmentPage();
               case 1:
-                return Container();
+                return CustomerOrders();
               case 2:
                 return const WalletOverview();
               case 3:

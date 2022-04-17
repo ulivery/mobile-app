@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ulivery_mobile_app/pages/deliveries/deliveries_overview_page.dart';
 import 'package:ulivery_mobile_app/widgets/rounded_button.dart';
 
 class DeliverOrderOverview extends StatefulWidget {
@@ -110,7 +111,7 @@ class _DeliverOrderOverviewBodyState extends State<DeliverOrderOverviewBody> {
               child: Center(
                   child: RoundedButton(
             text: 'Accepteren',
-            press: () {},
+            press: () {Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DeliveriesOverviewPage()));},
             color: Theme.of(context).colorScheme.secondary,
             textColor: Theme.of(context).colorScheme.primary,
           )))
