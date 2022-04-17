@@ -30,7 +30,7 @@ class _WalletBodyState extends State<WalletBody> {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return FutureBuilder(
-      future: UliveryApp.wallet.get(),
+      future: UliveryApp.wallet.getWallet(),
       builder: (BuildContext context, AsyncSnapshot<WalletResponse> snapshot) {
         if (snapshot.hasData) {
           WalletResponse wallet = snapshot.data!;

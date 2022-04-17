@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:fluri/fluri.dart';
-import 'package:http/http.dart' as http;
 import 'package:ulivery_mobile_app/api/models.dart';
 import 'package:ulivery_mobile_app/api/wrapper.dart';
 
@@ -11,8 +10,7 @@ class Catalog extends Wrapper {
   Future<List<ProductEnvironment>> getEnvironments({String search = ""}) async {
     List<ProductEnvironment> environments = [];
 
-    var response =
-        await http.get(getUri("api/environments", params: {"name": search}), headers: await getAuthHeaders());
+    var response = await get(getUri("api/environments", params: {"name": search}));
     if (response.statusCode == 200) {
       List<dynamic> json = jsonDecode(response.body);
       for (var item in json) {
@@ -27,9 +25,8 @@ class Catalog extends Wrapper {
   Future<List<ProductCategory>> getCategories({required int environmentId, String search = ""}) async {
     List<ProductCategory> categories = [];
 
-    var response = await http.get(
-        getUri("api/categories", params: {"environment": environmentId.toString(), "name": search}),
-        headers: await getAuthHeaders());
+    var response =
+        await get(getUri("api/categories", params: {"environment": environmentId.toString(), "name": search}));
     if (response.statusCode == 200) {
       List<dynamic> json = jsonDecode(response.body);
       for (var item in json) {
@@ -44,8 +41,7 @@ class Catalog extends Wrapper {
   Future<List<Product>> getProducts({required int categoryId, String search = ""}) async {
     List<Product> products = [];
 
-    var response = await http.get(getUri("api/products", params: {"category": categoryId.toString(), "name": search}),
-        headers: await getAuthHeaders());
+    var response = await get(getUri("api/products", params: {"category": categoryId.toString(), "name": search}));
     if (response.statusCode == 200) {
       List<dynamic> json = jsonDecode(response.body);
       for (var item in json) {
